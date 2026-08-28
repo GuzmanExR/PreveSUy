@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - PrevesUY</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Script oficial de Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root {
             --primary-color: #0066cc;
@@ -194,24 +196,20 @@
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
         }
+        /* Estilo visual para campos deshabilitados */
+        .form-control:disabled {
+            background-color: #f1f5f9;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
         textarea.form-control {
             resize: vertical;
             min-height: 120px;
         }
-        .captcha-box {
+        .recaptcha-wrapper {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: #f1f5f9;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-        .captcha-question {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            white-space: nowrap;
+            justify-content: center;
+            margin-bottom: 1.25rem;
         }
         .btn-submit {
             width: 100%;
@@ -227,6 +225,10 @@
         }
         .btn-submit:hover {
             background-color: var(--primary-hover);
+        }
+        .btn-submit:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
         }
         .whatsapp-float {
             position: fixed;
@@ -295,10 +297,6 @@
             }
             .form-container {
                 padding: 1.5rem;
-            }
-            .captcha-box {
-                flex-direction: column;
-                align-items: stretch;
             }
             .whatsapp-float span {
                 display: none;
@@ -371,26 +369,32 @@
         </section>
         <section class="form-container">
             <form id="contactForm" action="#" method="POST">
+                <!-- Todos los inputs inician con el atributo 'disabled' -->
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="Tu nombre completo" required>
+                    <input type="text" id="nombre" class="form-control" placeholder="Tu nombre completo" disabled required>
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" class="form-control" placeholder="nombre@ejemplo.com" required>
+                    <input type="email" id="email" class="form-control" placeholder="nombre@ejemplo.com" disabled required>
                 </div>
                 <div class="form-group">
                     <label for="mensaje">Tu mensaje...</label>
-                    <textarea id="mensaje" class="form-control" placeholder="Escribe aquí tu mensaje o consulta..." required></textarea>
+                    <textarea id="mensaje" class="form-control" placeholder="Escribe aquí tu mensaje o consulta..." disabled required></textarea>
                 </div>
+                
+                <!-- Google reCAPTCHA widget con callbacks de éxito y expiración -->
                 <div class="form-group">
-                    <label for="captcha-input">Verificación de seguridad</label>
-                    <div class="captcha-box">
-                        <span class="captcha-question" id="captchaQuestion"></span>
-                        <input type="number" id="captcha-input" class="form-control" placeholder="Respuesta" required>
+                    <div class="recaptcha-wrapper">
+                        <div class="g-recaptcha" 
+                             data-sitekey="tu-clave-de-sitio" 
+                             data-callback="habilitarFormulario" 
+                             data-expired-callback="bloquearFormulario">
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+
+                <button type="submit" id="btnSubmit" class="btn-submit" disabled>Enviar Mensaje</button>
             </form>
         </section>
     </main>
@@ -409,26 +413,43 @@
         </div>
         <p>© 2026 PrevesUY. Todos los derechos reservados. Desarrollado con fines de soporte y prevención.</p>
     </footer>
+    
     <script>
-        let n1 = Math.floor(Math.random() * 10) + 1;
-        let n2 = Math.floor(Math.random() * 10) + 1;
-        let ans = n1 + n2;
-        const qSpan = document.getElementById('captchaQuestion');
-        qSpan.textContent = `¿Cuánto es ${n1} + ${n2}?`;
+        // Función que se ejecuta cuando el usuario completa el reCAPTCHA correctamente
+        function habilitarFormulario() {
+            document.getElementById('nombre').disabled = false;
+            document.getElementById('email').disabled = false;
+            document.getElementById('mensaje').disabled = false;
+            document.getElementById('btnSubmit').disabled = false;
+        }
+
+        // Función que se ejecuta si el reCAPTCHA expira o se invalida
+        function bloquearFormulario() {
+            document.getElementById('nombre').disabled = true;
+            document.getElementById('email').disabled = true;
+            document.getElementById('mensaje').disabled = true;
+            document.getElementById('btnSubmit').disabled = true;
+        }
+
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (parseInt(document.getElementById('captcha-input').value) === ans) {
-                alert('¡Mensaje enviado con éxito!');
-                form.reset();
-                n1 = Math.floor(Math.random() * 10) + 1;
-                n2 = Math.floor(Math.random() * 10) + 1;
-                ans = n1 + n2;
-                qSpan.textContent = `¿Cuánto es ${n1} + ${n2}?`;
-            } else {
-                alert('Captcha incorrecto. Inténtalo de nuevo.');
-                document.getElementById('captcha-input').value = '';
-                document.getElementById('captcha-input').focus();
+            
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                alert('Por favor, completa la verificación de reCAPTCHA.');
+                return;
+            }
+
+            // Simulación de envío exitoso
+            alert('¡Mensaje enviado con éxito!');
+            form.reset();
+            bloquearFormulario(); // Bloquea de nuevo los inputs
+            grecaptcha.reset(); // Reinicia el reCAPTCHA visualmente
+        });
+    </script>
+</body>
+</html>
             }
         });
     </script>

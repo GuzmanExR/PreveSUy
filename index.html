@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contigo · Apoyo y prevención</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --cream:#fffdf8;
+    --yellow:#ffedb8;
+    --yellow-soft:#fff6dc;
+    --yellow-deep:#f0c563;
+    --celeste:#bfe3ec;
+    --celeste-soft:#e6f6fa;
+    --celeste-deep:#8fcbda;
+    --orange:#f7b685;
+    --orange-soft:#fde3cd;
+    --orange-deep:#e8935c;
+    --urgent:#e8935c;
+    --urgent-deep:#d97a44;
+    --text:#3e3a35;
+    --text-soft:#6b6660;
+    --line:#eee2c9;
+    --radius:22px;
+    --shadow: 0 10px 30px rgba(62,58,53,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--text);
+    font-family:"Work Sans", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand{
+    font-family:"Baloo 2", sans-serif;
+    font-weight:700;
+    margin:0;
+  }
+  p{line-height:1.6; color:var(--text-soft); margin:0;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  :focus-visible{outline:3px solid var(--orange-deep); outline-offset:2px;}
+  img,svg{display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,253,248,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .headbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1180px; margin:0 auto; gap:16px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-size:1.3rem; color:var(--text);}
+  .brand .dot{
+    width:34px; height:34px; border-radius:50%;
+    background:conic-gradient(from 90deg, var(--celeste), var(--yellow), var(--orange), var(--celeste));
+    position:relative; flex:none;
+  }
+  .brand .dot::after{
+    content:""; position:absolute; inset:6px; border-radius:50%; background:var(--cream);
+  }
+  nav{display:flex; gap:4px; align-items:center;}
+  .nav-btn{
+    padding:9px 16px; border-radius:999px; font-weight:600; font-size:0.95rem;
+    color:var(--text-soft); background:transparent; transition:.2s;
+  }
+  .nav-btn:hover{background:var(--yellow-soft); color:var(--text);}
+  .nav-btn.active{background:var(--celeste-soft); color:var(--text);}
+  .call-btn{
+    display:flex; align-items:center; gap:8px;
+    background:var(--urgent); color:#fff; font-weight:700;
+    padding:11px 18px; border-radius:999px; white-space:nowrap;
+    box-shadow:0 6px 18px rgba(217,122,68,0.35);
+    position:relative;
+  }
+  .call-btn .pulse{
+    position:absolute; inset:-6px; border-radius:999px;
+    border:2px solid var(--urgent); opacity:0.6;
+    animation:pulse 2.2s ease-out infinite;
+  }
+  .call-btn:hover{background:var(--urgent-deep);}
+  @keyframes pulse{
+    0%{ transform:scale(1); opacity:.55; }
+    100%{ transform:scale(1.35); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .call-btn .pulse, .breathe, .breathe-ring{animation:none !important;}
+  }
+  .menu-toggle{display:none; background:none; padding:8px;}
+
+  /* ---------- Views ---------- */
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:64px 0 40px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-block; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    font-size:0.78rem; color:var(--orange-deep); background:var(--orange-soft);
+    padding:6px 14px; border-radius:999px; margin-bottom:18px;
+  }
+  .hero h1{font-size:2.7rem; line-height:1.15; color:var(--text); max-width:16ch;}
+  .hero p.lead{font-size:1.13rem; margin-top:16px; max-width:46ch;}
+  .hero-actions{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; align-items:center;}
+  .btn-urgent-lg{
+    display:flex; align-items:center; gap:10px;
+    background:var(--urgent); color:#fff; font-weight:700; font-size:1.05rem;
+    padding:16px 26px; border-radius:999px; position:relative;
+    box-shadow:0 10px 26px rgba(217,122,68,0.35);
+  }
+  .btn-urgent-lg .pulse{
+    position:absolute; inset:-8px; border-radius:999px;
+    border:2px solid var(--urgent); opacity:.55; animation:pulse 2.2s ease-out infinite;
+  }
+  .btn-urgent-lg:hover{background:var(--urgent-deep);}
+  .hero-note{font-size:0.9rem; color:var(--text-soft); font-weight:600;}
+
+  .hero-art{
+    position:relative; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+  }
+  .breathe-ring{
+    position:absolute; border-radius:50%; border:2px solid var(--celeste-deep);
+    animation:breathe 6s ease-in-out infinite;
+  }
+  .breathe-ring.r1{width:60%; height:60%; animation-delay:0s;}
+  .breathe-ring.r2{width:80%; height:80%; border-color:var(--yellow-deep); animation-delay:.6s;}
+  .breathe-ring.r3{width:100%; height:100%; border-color:var(--orange-deep); opacity:0.6; animation-delay:1.2s;}
+  @keyframes breathe{
+    0%,100%{ transform:scale(0.92); opacity:.35; }
+    50%{ transform:scale(1.04); opacity:.85; }
+  }
+  .hero-art .core{
+    position:relative; z-index:2; width:38%; aspect-ratio:1/1; border-radius:50%;
+    background:linear-gradient(160deg, var(--yellow), var(--orange));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+  }
+  .hero-art .core svg{width:44%; height:44%;}
+
+  /* ---------- Entry cards ---------- */
+  .entries{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+    padding:8px 0 56px;
+  }
+  .entry-card{
+    border-radius:var(--radius); padding:28px; text-align:left;
+    display:flex; flex-direction:column; gap:14px; align-items:flex-start;
+    box-shadow:var(--shadow); transition:.25s transform, .25s box-shadow;
+    border:1px solid transparent;
+  }
+  .entry-card:hover{transform:translateY(-4px); box-shadow:0 16px 34px rgba(62,58,53,0.12);}
+  .entry-card.yellow{background:var(--yellow-soft); }
+  .entry-card.celeste{background:var(--celeste-soft); }
+  .entry-card.orange{background:var(--orange-soft); }
+  .entry-icon{
+    width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+  }
+  .entry-card.yellow .entry-icon{background:var(--yellow-deep);}
+  .entry-card.celeste .entry-icon{background:var(--celeste-deep);}
+  .entry-card.orange .entry-icon{background:var(--orange-deep);}
+  .entry-icon svg{width:26px; height:26px; stroke:#fff;}
+  .entry-card h3{font-size:1.25rem;}
+  .entry-card .go{font-weight:700; font-size:0.92rem; color:var(--text); display:flex; align-items:center; gap:6px; margin-top:auto;}
+
+  /* ---------- Quick resources row ---------- */
+  .section-title{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:10px;}
+  .section-title h2{font-size:1.5rem;}
+  .quick-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding-bottom:56px;
+  }
+  .quick-item{
+    background:var(--white); border:1px solid var(--line); border-radius:16px;
+    padding:20px; display:flex; flex-direction:column; gap:10px; align-items:flex-start;
+    transition:.2s;
+  }
+  .quick-item:hover{border-color:var(--celeste-deep); background:var(--celeste-soft);}
+  .quick-item .qi-icon{
+    width:38px; height:38px; border-radius:10px; background:var(--yellow-soft);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .quick-item .qi-icon svg{width:20px; height:20px; stroke:var(--orange-deep);}
+  .quick-item strong{font-family:"Baloo 2"; font-size:1rem;}
+  .quick-item span{font-size:0.85rem; color:var(--text-soft);}
+
+  /* ---------- Hope banner ---------- */
+  .hope{
+    background:linear-gradient(120deg, var(--celeste-soft), var(--yellow-soft));
+    border-radius:28px; padding:44px; margin-bottom:64px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .hope-msg{
+    background:var(--white); border-radius:18px; padding:22px; box-shadow:var(--shadow);
+  }
+  .hope-msg p.quote{font-family:"Baloo 2"; font-size:1.05rem; color:var(--text); font-weight:600; line-height:1.4;}
+  .hope-msg span{font-size:0.82rem; color:var(--text-soft); display:block; margin-top:10px;}
+
+  /* ---------- Generic page header (recursos/rutinas) ---------- */
+  .page-hero{padding:52px 0 20px;}
+  .page-hero .eyebrow{margin-bottom:12px;}
+  .page-hero h1{font-size:2.1rem; max-width:28ch;}
+  .page-hero p{margin-top:12px; max-width:60ch; font-size:1.05rem;}
+
+  /* ---------- Tabs ---------- */
+  .tabs{display:flex; gap:10px; margin:28px 0 34px; flex-wrap:wrap;}
+  .tab-btn{
+    padding:12px 22px; border-radius:999px; font-weight:700; background:var(--white);
+    border:1px solid var(--line); color:var(--text-soft);
+  }
+  .tab-btn.active{background:var(--text); color:var(--white); border-color:var(--text);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .card-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px; padding-bottom:60px;}
+  .res-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; display:flex; flex-direction:column; gap:12px;
+  }
+  .res-card .tag{
+    align-self:flex-start; font-size:0.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--orange-deep); background:var(--orange-soft); padding:5px 12px; border-radius:999px;
+  }
+  .res-card h3{font-size:1.15rem;}
+  .res-card ul{margin:0; padding-left:18px; color:var(--text-soft); font-size:0.95rem; line-height:1.7;}
+  .res-card .foot-link{margin-top:auto; font-weight:700; font-size:0.9rem; color:var(--celeste-deep);}
+
+  .crisis-strip{
+    background:var(--text); color:var(--white); border-radius:var(--radius);
+    padding:30px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;
+    margin-bottom:56px;
+  }
+  .crisis-strip h3{font-size:1.2rem; color:var(--white);}
+  .crisis-strip p{color:#d9d5cf;}
+  .crisis-strip .btn-urgent-lg{box-shadow:none;}
+
+  /* ---------- Rutinas ---------- */
+  .progress-box{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px 28px; display:flex; align-items:center; gap:22px; margin:26px 0 40px;
+    flex-wrap:wrap;
+  }
+  .ring{width:64px; height:64px; border-radius:50%; flex:none;
+    background:conic-gradient(var(--orange-deep) calc(var(--pct,0) * 1%), var(--yellow-soft) 0);
+    display:flex; align-items:center; justify-content:center; transition:background 0.4s;}
+  .ring::after{content:""; width:48px; height:48px; border-radius:50%; background:var(--white);}
+  .ring-label{position:absolute; font-weight:700; font-family:"Baloo 2"; font-size:0.95rem;}
+  .ring-wrap{position:relative; display:flex; align-items:center; justify-content:center;}
+
+  .rut-group{margin-bottom:44px;}
+  .rut-group h2{font-size:1.3rem; margin-bottom:6px;}
+  .rut-group > p{margin-bottom:18px;}
+  .rut-list{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .rut-item{
+    display:flex; align-items:flex-start; gap:14px; background:var(--white);
+    border:1px solid var(--line); border-radius:16px; padding:16px 18px; cursor:pointer;
+    transition:.2s;
+  }
+  .rut-item:hover{border-color:var(--celeste-deep);}
+  .rut-item.done{background:var(--celeste-soft); border-color:var(--celeste-deep);}
+  .rut-check{
+    width:24px; height:24px; border-radius:8px; border:2px solid var(--celeste-deep); flex:none;
+    display:flex; align-items:center; justify-content:center; margin-top:2px;
+  }
+  .rut-item.done .rut-check{background:var(--celeste-deep);}
+  .rut-check svg{width:14px; height:14px; stroke:#fff; opacity:0;}
+  .rut-item.done .rut-check svg{opacity:1;}
+  .rut-text strong{font-family:"Baloo 2"; font-size:1rem; display:block;}
+  .rut-text span{font-size:0.87rem; color:var(--text-soft);}
+
+  .new-thing{
+    background:linear-gradient(120deg, var(--orange-soft), var(--yellow-soft));
+    border-radius:var(--radius); padding:30px; display:flex; align-items:center; justify-content:space-between;
+    gap:20px; flex-wrap:wrap; margin-bottom:60px;
+  }
+  .new-thing h3{font-size:1.2rem;}
+  .btn-refresh{
+    background:var(--white); padding:12px 20px; border-radius:999px; font-weight:700;
+    display:flex; align-items:center; gap:8px; box-shadow:var(--shadow);
+  }
+
+  /* ---------- Sobre nosotros ---------- */
+  .value-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin:30px 0 56px;}
+  .value-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:12px;
+  }
+  .value-card .v-icon{
+    width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  }
+  .value-card:nth-child(1) .v-icon{background:var(--yellow-deep);}
+  .value-card:nth-child(2) .v-icon{background:var(--celeste-deep);}
+  .value-card:nth-child(3) .v-icon{background:var(--orange-deep);}
+  .value-card:nth-child(4) .v-icon{background:var(--text);}
+  .value-card .v-icon svg{width:22px; height:22px; stroke:#fff;}
+  .value-card h3{font-size:1.05rem;}
+  .value-card p{font-size:0.92rem;}
+
+  .mission-panel{
+    background:linear-gradient(120deg, var(--celeste-soft), var(--yellow-soft));
+    border-radius:28px; padding:40px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:32px;
+    align-items:center; margin-bottom:12px;
+  }
+  .mission-panel h2{font-size:1.6rem; margin-bottom:14px;}
+  .mission-art{
+    aspect-ratio:4/3; border-radius:20px; background:var(--white); box-shadow:var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mission-art svg{width:56%; height:56%;}
+
+  .team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:36px 0 60px;}
+  .team-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 20px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .team-avatar{
+    width:64px; height:64px; border-radius:50%; background:var(--celeste-soft);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .team-avatar svg{width:30px; height:30px; stroke:var(--celeste-deep);}
+  .team-card strong{font-family:"Baloo 2"; font-size:1rem;}
+  .team-card span{font-size:0.85rem; color:var(--text-soft);}
+
+  .cta-strip{
+    background:var(--text); color:var(--white); border-radius:var(--radius);
+    padding:30px 36px; display:flex; align-items:center; justify-content:space-between;
+    gap:20px; flex-wrap:wrap; margin-bottom:60px;
+  }
+  .cta-strip p{color:#d9d5cf; font-weight:600; font-size:1.05rem;}
+  .btn-light{
+    background:var(--white); color:var(--text); font-weight:700; padding:13px 24px;
+    border-radius:999px; white-space:nowrap;
+  }
+
+  /* ---------- Contacto ---------- */
+  .contact-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:30px 0 48px;}
+  .contact-card{
+    background:var(--white); border:1px solid var(--line); border-radius:16px;
+    padding:22px; display:flex; flex-direction:column; gap:8px;
+  }
+  .contact-card .c-icon{
+    width:38px; height:38px; border-radius:10px; background:var(--celeste-soft);
+    display:flex; align-items:center; justify-content:center; margin-bottom:4px;
+  }
+  .contact-card .c-icon svg{width:19px; height:19px; stroke:var(--celeste-deep);}
+  .contact-card strong{font-family:"Baloo 2"; font-size:0.98rem;}
+  .contact-card span, .contact-card a.detail{font-size:0.88rem; color:var(--text-soft);}
+  .contact-card a.detail:hover{color:var(--orange-deep);}
+
+  .contact-layout{display:grid; grid-template-columns:1fr 1fr; gap:28px; padding-bottom:60px; align-items:start;}
+  .contact-form{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:32px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field label{font-weight:700; font-size:0.9rem;}
+  .field input, .field textarea{
+    border:1px solid var(--line); border-radius:12px; padding:12px 14px; font-family:inherit;
+    font-size:0.95rem; background:var(--cream); color:var(--text); resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--celeste-deep); border-color:var(--celeste-deep);}
+  .btn-submit{
+    background:var(--urgent); color:#fff; font-weight:700; padding:14px 22px; border-radius:999px;
+    align-self:flex-start;
+  }
+  .btn-submit:hover{background:var(--urgent-deep);}
+  .form-note{font-size:0.85rem; color:var(--text-soft); margin-top:-6px;}
+
+  .confid-panel{
+    background:var(--celeste-soft); border-radius:var(--radius); padding:30px; display:flex; flex-direction:column; gap:16px;
+  }
+  .confid-panel h3{font-size:1.1rem; display:flex; align-items:center; gap:10px;}
+  .confid-panel h3 svg{width:22px; height:22px; stroke:var(--celeste-deep);}
+  .confid-item strong{display:block; font-family:"Baloo 2"; font-size:0.95rem; margin-bottom:4px;}
+  .confid-item p{font-size:0.9rem;}
+  .anon-row{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    background:var(--white); border-radius:14px; padding:14px 18px;
+  }
+  .switch{width:40px; height:22px; border-radius:999px; background:var(--celeste-deep); position:relative; flex:none;}
+  .switch::after{content:""; position:absolute; top:2px; left:20px; width:18px; height:18px; border-radius:50%; background:#fff;}
+
+  @media (max-width:920px){
+    .value-grid{grid-template-columns:repeat(2,1fr);}
+    .mission-panel{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-cards{grid-template-columns:repeat(2,1fr);}
+    .contact-layout{grid-template-columns:1fr;}
+    .cta-strip{flex-direction:column; align-items:flex-start;}
+  }
+
+  footer{
+    background:var(--white); border-top:1px solid var(--line); padding:44px 0 30px; margin-top:20px;
+  }
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:32px; margin-bottom:26px;}
+  footer h4{font-family:"Baloo 2"; font-size:1rem; margin-bottom:12px;}
+  footer p, footer a{font-size:0.9rem; color:var(--text-soft);}
+  footer .foot-links{display:flex; flex-direction:column; gap:8px;}
+  .disclaimer{font-size:0.8rem; color:var(--text-soft); border-top:1px solid var(--line); padding-top:18px;}
+
+  .float-call{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:var(--urgent); color:#fff; width:58px; height:58px; border-radius:50%;
+    display:none; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(217,122,68,0.4);
+  }
+  .float-call svg{width:26px; height:26px; stroke:#fff;}
+
+  @media (max-width:920px){
+    nav{display:none; position:absolute; top:100%; left:0; right:0; background:var(--cream);
+      flex-direction:column; padding:14px 24px; border-bottom:1px solid var(--line); gap:6px;}
+    nav.open{display:flex;}
+    .menu-toggle{display:flex; align-items:center; justify-content:center;}
+    .hero{grid-template-columns:1fr; padding-top:36px;}
+    .hero-art{order:-1; max-width:280px; margin:0 auto;}
+    .hero h1{font-size:2.1rem;}
+    .entries{grid-template-columns:1fr;}
+    .quick-row{grid-template-columns:repeat(2,1fr);}
+    .hope{grid-template-columns:1fr;}
+    .card-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .crisis-strip{grid-template-columns:1fr;}
+    .rut-list{grid-template-columns:1fr;}
+    .float-call{display:flex;}
+    .call-btn span.txt{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headbar">
+    <a href="#inicio" class="brand" onclick="showView('inicio')">
+      <span class="dot"></span> Contigo
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav id="mainNav">
+      <a class="nav-btn" data-view="inicio" href="#inicio">Inicio</a>
+      <a class="nav-btn" data-view="sobre" href="#sobre">Sobre nosotros</a>
+      <a class="nav-btn" data-view="recursos" href="#recursos">Recursos</a>
+      <a class="nav-btn" data-view="rutinas" href="#rutinas">Rutinas</a>
+      <a class="nav-btn" data-view="contacto" href="#contacto">Contacto</a>
+    </nav>
+    <a class="call-btn" href="tel:08000767">
+      <span class="pulse"></span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.23a2 2 0 0 1 2.11-.45c.85.32 1.74.54 2.64.66A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="txt">0800 0767</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ INICIO ============ -->
+<main class="wrap">
+<section id="view-inicio" class="view active">
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">No estás solo/a</span>
+      <h1>Estamos acá para escucharte y acompañarte.</h1>
+      <p class="lead">Un espacio cálido con líneas de ayuda inmediata, recursos para vos o para alguien que te importa, y pequeñas rutinas para empezar a sentirte mejor, un día a la vez.</p>
+      <div class="hero-actions">
+        <a class="btn-urgent-lg" href="tel:08000767">
+          <span class="pulse"></span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.23a2 2 0 0 1 2.11-.45c.85.32 1.74.54 2.64.66A2 2 0 0 1 22 16.92z"/></svg>
+          Llamar ahora · 0800 0767
+        </a>
+        <span class="hero-note">Gratuita · Confidencial · Las 24 horas, todos los días</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <span class="breathe-ring r3"></span>
+      <span class="breathe-ring r2"></span>
+      <span class="breathe-ring r1"></span>
+      <div class="core">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3e3a35" stroke-width="1.8"><path d="M20.8 4.6c-1.6-1.6-4.2-1.6-5.8 0L12 7.6 9 4.6c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8L12 19l8.8-8.6c1.6-1.6 1.6-4.2 0-5.8z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="entries">
+    <div class="entry-card yellow">
+      <div class="entry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <h3>Necesito ayuda para mí</h3>
+      <p>Si estás pasando un mal momento: señales para reconocerlo, guías de autocuidado y líneas de contacto.</p>
+      <a class="go" href="#recursos" onclick="showView('recursos'); showTab('propia')">Ver recursos →</a>
+    </div>
+    <div class="entry-card celeste">
+      <div class="entry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.8 4.6c-1.6-1.6-4.2-1.6-5.8 0L12 7.6 9 4.6c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8L12 19l8.8-8.6c1.6-1.6 1.6-4.2 0-5.8z"/></svg>
+      </div>
+      <h3>Quiero ayudar a alguien</h3>
+      <p>Identificá señales de alerta en otra persona y aprendé cómo acompañar sin lastimar ni juzgar.</p>
+      <a class="go" href="#recursos" onclick="showView('recursos'); showTab('acompanar')">Ver recursos →</a>
+    </div>
+    <div class="entry-card orange">
+      <div class="entry-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+      </div>
+      <h3>Rutinas para sentirte mejor</h3>
+      <p>Pequeños cambios en tu día a día: moverte, descansar mejor y animarte a probar algo nuevo.</p>
+      <a class="go" href="#rutinas" onclick="showView('rutinas')">Ver rutinas →</a>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>Recursos y herramientas</h2>
+  </div>
+  <div class="quick-row">
+    <a class="quick-item" href="#recursos" onclick="showView('recursos'); showTab('propia')">
+      <span class="qi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+      <strong>Señales de alerta</strong>
+      <span>Cómo reconocerlas a tiempo</span>
+    </a>
+    <a class="quick-item" href="#recursos" onclick="showView('recursos'); showTab('propia')">
+      <span class="qi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5c0 1.6-2.5 1.8-2.5 3.8M12 17h.01"/></svg></span>
+      <strong>Mitos y verdades</strong>
+      <span>Información basada en evidencia</span>
+    </a>
+    <a class="quick-item" href="#recursos" onclick="showView('recursos'); showTab('propia')">
+      <span class="qi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V5a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg></span>
+      <strong>Directorio</strong>
+      <span>Atención profesional cerca tuyo</span>
+    </a>
+    <a class="quick-item" href="#rutinas" onclick="showView('rutinas')">
+      <span class="qi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></span>
+      <strong>Guías de respiración</strong>
+      <span>Para momentos de angustia</span>
+    </a>
+  </div>
+
+  <div class="section-title">
+    <h2>Mensajes de esperanza</h2>
+  </div>
+  <div class="hope">
+    <div class="hope-msg">
+      <p class="quote">"Pedir ayuda no es un signo de debilidad, es un acto de coraje."</p>
+      <span>Esto también va a pasar.</span>
+    </div>
+    <div class="hope-msg">
+      <p class="quote">"No hace falta tener todas las respuestas para empezar a hablar."</p>
+      <span>Un paso a la vez es suficiente.</span>
+    </div>
+    <div class="hope-msg">
+      <p class="quote">"Hay personas capacitadas esperando para escucharte, hoy mismo."</p>
+      <span>Nunca es tarde para llamar.</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ SOBRE NOSOTROS ============ -->
+<section id="view-sobre" class="view">
+  <div class="page-hero">
+    <span class="eyebrow">Conocenos</span>
+    <h1>Creamos un espacio seguro para escuchar, guiar y acompañar</h1>
+    <p>Contigo nace para centralizar herramientas, brindar apoyo y tender puentes en los momentos donde más se necesita. Creemos en la ayuda accesible, cercana y comunitaria.</p>
+  </div>
+
+  <div class="mission-panel">
+    <div>
+      <h2>Nuestra misión</h2>
+      <p>Prevenir el sufrimiento psicosocial, brindar apoyo inmediato durante situaciones de crisis y promover la salud mental en todo el territorio. Facilitamos herramientas educativas, intervenciones basadas en evidencia y redes de contención para jóvenes, familias y comunidades, priorizando siempre la seguridad y la dignidad de las personas.</p>
+    </div>
+    <div class="mission-art" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange-deep)" stroke-width="1.6">
+        <path d="M12 21c-4.5-3-9-6.4-9-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.6-4.5 8-9 11z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.8 4.6c-1.6-1.6-4.2-1.6-5.8 0L12 7.6 9 4.6c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8L12 19l8.8-8.6c1.6-1.6 1.6-4.2 0-5.8z"/></svg></div>
+      <h3>Empatía</h3>
+      <p>Escuchamos con respeto y respondemos con comprensión para acompañar a cada persona en su camino hacia la recuperación.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+      <h3>Confidencialidad</h3>
+      <p>Garantizamos privacidad y manejo seguro de la información para proteger a quienes buscan ayuda.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+      <h3>Accesibilidad</h3>
+      <p>Ofrecemos recursos en múltiples formatos y canales para llegar a personas en todas las regiones.</p>
+    </div>
+    <div class="value-card">
+      <div class="v-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V5a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg></div>
+      <h3>Evidencia</h3>
+      <p>Basamos nuestras intervenciones en investigación y buenas prácticas para ofrecer respuestas efectivas y medibles.</p>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>Las personas detrás de Contigo</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <strong>Nombre Apellido</strong>
+      <span>Coordinación general</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <strong>Nombre Apellido</strong>
+      <span>Psicología clínica</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <strong>Nombre Apellido</strong>
+      <span>Trabajo social</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <strong>Nombre Apellido</strong>
+      <span>Comunicación y difusión</span>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <div>
+      <h3 style="color:var(--white); margin-bottom:6px;">¿Querés sumarte al proyecto o hacernos una consulta?</h3>
+      <p>Estamos siempre abiertos a sumar voluntades y escuchar ideas.</p>
+    </div>
+    <a class="btn-light" href="#contacto" onclick="showView('contacto')">Contáctanos</a>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="view-contacto" class="view">
+  <div class="page-hero">
+    <span class="eyebrow">Contacto</span>
+    <h1>Estamos acá para escucharte y apoyarte</h1>
+    <p>Por favor, utiliza los medios a continuación para ponerte en contacto con nosotros. Nuestro equipo multidisciplinario está disponible para atender tus consultas de manera segura, humana y completamente confidencial.</p>
+  </div>
+
+  <div class="contact-cards">
+    <div class="contact-card">
+      <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.23a2 2 0 0 1 2.11-.45c.85.32 1.74.54 2.64.66A2 2 0 0 1 22 16.92z"/></svg></span>
+      <strong>Línea telefónica 24/7</strong>
+      <a class="detail" href="tel:08000767">0800 0767</a>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+      <strong>Correo electrónico</strong>
+      <a class="detail" href="mailto:contacto@contigo.org">contacto@contigo.org</a>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+      <strong>Ubicación física</strong>
+      <span>Nuestra sede, Montevideo</span>
+    </div>
+    <div class="contact-card">
+      <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v3"/></svg></span>
+      <strong>Formulario web</strong>
+      <span>Respuesta en menos de 24 horas</span>
+    </div>
+  </div>
+
+  <div class="contact-layout">
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('¡Gracias! Recibimos tu mensaje y te vamos a responder pronto.'); this.reset();">
+      <div class="field">
+        <label for="c-nombre">Nombre</label>
+        <input id="c-nombre" type="text" placeholder="Tu nombre completo" required>
+      </div>
+      <div class="field">
+        <label for="c-email">Correo electrónico</label>
+        <input id="c-email" type="email" placeholder="nombre@ejemplo.com" required>
+      </div>
+      <div class="field">
+        <label for="c-msg">Tu mensaje</label>
+        <textarea id="c-msg" rows="5" placeholder="Escribí aquí tu mensaje o consulta..." required></textarea>
+      </div>
+      <p class="form-note">Este formulario no es para emergencias. Si estás en peligro inmediato, llamá al 0800 0767 o al 911/105.</p>
+      <button class="btn-submit" type="submit">Enviar mensaje</button>
+    </form>
+
+    <div class="confid-panel">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Confidencialidad</h3>
+      <p>Valoramos tu privacidad. Esto es lo que necesitás saber sobre cómo protegemos tus datos.</p>
+      <div class="confid-item">
+        <strong>Qué datos recopilamos</strong>
+        <p>Solo la información mínima necesaria para brindarte apoyo. No pedimos datos que no sean esenciales.</p>
+      </div>
+      <div class="confid-item">
+        <strong>Cuándo se comparte información</strong>
+        <p>Únicamente con servicios de emergencia en situaciones de riesgo inmediato para tu seguridad o la de otros.</p>
+      </div>
+      <div class="confid-item">
+        <strong>Garantías</strong>
+        <p>Protocolos de confidencialidad, personal capacitado y opciones de anonimato cuando corresponda.</p>
+      </div>
+      <div class="anon-row">
+        <span><strong style="display:block; font-family:'Baloo 2'; font-size:0.9rem;">Anonimato disponible</strong><span style="font-size:0.82rem; color:var(--text-soft);">Podés pedir atención anónima cuando el servicio lo permita.</span></span>
+        <span class="switch" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECURSOS ============ -->
+<section id="view-recursos" class="view">
+  <div class="page-hero">
+    <span class="eyebrow">Recursos</span>
+    <h1>Información y herramientas de apoyo</h1>
+    <p>Ya sea que estés atravesando un mal momento o quieras acompañar a alguien que te importa, acá vas a encontrar guías pensadas para cada situación.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="propia" onclick="showTab('propia')">Necesito ayuda para mí</button>
+    <button class="tab-btn" data-tab="acompanar" onclick="showTab('acompanar')">Quiero ayudar a alguien</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-propia">
+    <div class="card-grid">
+      <div class="res-card">
+        <span class="tag">Autoconocimiento</span>
+        <h3>Reconocer señales en mí</h3>
+        <ul>
+          <li>Cambios fuertes en el sueño o el apetito</li>
+          <li>Sensación de estar agotado/a todo el tiempo</li>
+          <li>Alejarte de personas o actividades que disfrutabas</li>
+          <li>Pensamientos de que "sería más fácil no estar"</li>
+        </ul>
+        <a class="foot-link" href="tel:08000767">Si te identificás, llamá →</a>
+      </div>
+      <div class="res-card">
+        <span class="tag">Primeros auxilios emocionales</span>
+        <h3>Qué hacer en un momento difícil</h3>
+        <ul>
+          <li>Buscá un lugar seguro y alejate de objetos que puedan hacerte daño</li>
+          <li>Contactá a alguien de confianza o a la línea de ayuda</li>
+          <li>Probá una respiración lenta: 4 segundos inhalando, 6 exhalando</li>
+          <li>Recordá: esta sensación es intensa, pero no es permanente</li>
+        </ul>
+        <a class="foot-link" href="#rutinas" onclick="showView('rutinas')">Ver más técnicas →</a>
+      </div>
+      <div class="res-card">
+        <span class="tag">Líneas de ayuda</span>
+        <h3>Contactos inmediatos en Uruguay</h3>
+        <ul>
+          <li>Línea Vida (prevención del suicidio): 0800 0767 / *0767</li>
+          <li>Línea de Apoyo Emocional: 0800 1920</li>
+          <li>Emergencia médica: 911 / 105</li>
+        </ul>
+        <a class="foot-link" href="tel:08000767">Llamar a Línea Vida →</a>
+      </div>
+      <div class="res-card">
+        <span class="tag">Atención profesional</span>
+        <h3>Directorio de apoyo psicológico</h3>
+        <p>Consultá con tu prestador de salud sobre atención en salud mental. Muchas instituciones ofrecen primeras consultas sin costo o a bajo costo.</p>
+        <a class="foot-link" href="tel:08000767">Pedí orientación por teléfono →</a>
+      </div>
+      <div class="res-card">
+        <span class="tag">Mitos y verdades</span>
+        <h3>Ideas que conviene revisar</h3>
+        <ul>
+          <li>Hablar del tema no "planta la idea": preguntar directamente ayuda</li>
+          <li>Pedir ayuda no te hace una carga para los demás</li>
+          <li>No hace falta estar "muy mal" para llamar a una línea de apoyo</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <span class="tag">Cuidado continuo</span>
+        <h3>Después de la crisis</h3>
+        <p>Armar una red de contactos, sostener rutinas simples y hacer seguimiento profesional ayuda a sostener el bienestar en el tiempo. La sección Rutinas tiene ideas concretas para empezar.</p>
+        <a class="foot-link" href="#rutinas" onclick="showView('rutinas')">Ir a rutinas →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-acompanar">
+    <div class="card-grid">
+      <div class="res-card">
+        <span class="tag">Reconocer señales</span>
+        <h3>Señales de alerta en otra persona</h3>
+        <ul>
+          <li>Habla sobre morir, desaparecer o ser una carga</li>
+          <li>Se aísla de familia y amigos</li>
+          <li>Regala pertenencias o cierra "asuntos pendientes"</li>
+          <li>Cambios bruscos de ánimo, de la angustia a una calma repentina</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <span class="tag">Cómo hablar</span>
+        <h3>Iniciar la conversación</h3>
+        <ul>
+          <li>Elegí un momento tranquilo y preguntá directamente cómo se siente</li>
+          <li>Escuchá sin apurarte a dar soluciones</li>
+          <li>Evitá minimizar ("no es para tanto") o dramatizar</li>
+          <li>Preguntar sobre el tema no aumenta el riesgo, lo reduce</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <span class="tag">Qué evitar</span>
+        <h3>Frases y actitudes que no ayudan</h3>
+        <ul>
+          <li>Prometer guardar el secreto sin buscar ayuda profesional</li>
+          <li>Juzgar, culpabilizar o comparar con otras situaciones</li>
+          <li>Dejar sola a la persona en un momento de crisis aguda</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <span class="tag">Entorno seguro</span>
+        <h3>Cómo acompañar en el día a día</h3>
+        <p>Mantené contacto regular, invitala a actividades simples y ayudala a conectarse con una línea de ayuda o profesional. No necesitás tener todas las respuestas, solo estar presente.</p>
+      </div>
+      <div class="res-card">
+        <span class="tag">Emergencia</span>
+        <h3>Si el riesgo es inmediato</h3>
+        <p>No dejes sola a la persona, alejá objetos de riesgo y comunicate con la Línea Vida (0800 0767) o con emergencias (911 / 105) para recibir orientación inmediata.</p>
+        <a class="foot-link" href="tel:08000767">Llamar a Línea Vida →</a>
+      </div>
+      <div class="res-card">
+        <span class="tag">Cuidar a quien cuida</span>
+        <h3>Tu bienestar también importa</h3>
+        <p>Acompañar a alguien puede ser agotador. Buscá tu propio espacio de apoyo, poné límites sanos y pedí ayuda profesional si lo necesitás.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="crisis-strip">
+    <div>
+      <h3>¿Es una emergencia ahora mismo?</h3>
+      <p>Las líneas de ayuda están disponibles las 24 horas, todos los días del año, sin costo.</p>
+    </div>
+    <a class="btn-urgent-lg" href="tel:08000767">
+      <span class="pulse"></span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.23a2 2 0 0 1 2.11-.45c.85.32 1.74.54 2.64.66A2 2 0 0 1 22 16.92z"/></svg>
+      Llamar a Línea Vida
+    </a>
+  </div>
+</section>
+
+<!-- ============ RUTINAS ============ -->
+<section id="view-rutinas" class="view">
+  <div class="page-hero">
+    <span class="eyebrow">Rutinas</span>
+    <h1>Pequeños cambios que suman</h1>
+    <p>No hace falta cambiar todo de golpe. Elegí una o dos acciones por día: marcalas cuando las hagas y notá cómo se acumulan.</p>
+  </div>
+
+  <div class="progress-box">
+    <div class="ring-wrap">
+      <div class="ring" id="progressRing" style="--pct:0"></div>
+      <span class="ring-label" id="progressLabel">0%</span>
+    </div>
+    <div>
+      <strong style="font-family:'Baloo 2'; font-size:1.05rem;" id="progressText">Todavía no marcaste ninguna actividad hoy</strong>
+      <p>Cada actividad marcada queda guardada solo en esta sesión, para que puedas ver tu avance del día.</p>
+    </div>
+  </div>
+
+  <div class="rut-group">
+    <h2>Por la mañana</h2>
+    <p>Empezar el día con pequeñas señales de cuidado hacia vos mismo/a.</p>
+    <div class="rut-list">
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Recibir luz natural</strong><span>Salí o abrí la ventana los primeros 10 minutos del día</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Estirar el cuerpo</strong><span>Unos minutos de movimiento suave antes de empezar</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Desayunar sin pantallas</strong><span>Un momento de calma antes de mirar el celular</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Escribir una intención</strong><span>Una frase corta de cómo querés sentirte hoy</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rut-group">
+    <h2>Durante el día</h2>
+    <p>Momentos breves para sostener el ánimo entre tareas.</p>
+    <div class="rut-list">
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Caminar 15 minutos</strong><span>Al aire libre si es posible</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Llamar a alguien de confianza</strong><span>Aunque sea una charla corta</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Respiración consciente</strong><span>4 segundos inhalando, 6 exhalando, durante 2 minutos</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Anotar 3 líneas</strong><span>Lo que sentís, sin corregirlo ni juzgarlo</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rut-group">
+    <h2>Por la noche</h2>
+    <p>Cerrar el día de forma más suave.</p>
+    <div class="rut-list">
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Apagar pantallas antes</strong><span>30 minutos antes de dormir</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Anotar algo bueno del día</strong><span>Por pequeño que parezca</span></div>
+      </div>
+      <div class="rut-item" onclick="toggleRut(this)">
+        <span class="rut-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div class="rut-text"><strong>Preparar el espacio para dormir</strong><span>Luz baja y temperatura cómoda</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="new-thing">
+    <div>
+      <span class="eyebrow" style="background:var(--white);">Probar algo nuevo</span>
+      <h3 id="newThingText">Esta semana: aprendé 3 palabras en un idioma nuevo.</h3>
+    </div>
+    <button class="btn-refresh" onclick="newSuggestion()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      Otra idea
+    </button>
+  </div>
+
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:1.15rem; margin-bottom:10px;"><span class="dot"></span> Contigo</div>
+        <p>Un espacio de apoyo e información para prevenir el suicidio, acompañar a otros y cuidar la salud emocional día a día.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <div class="foot-links">
+          <a href="#inicio" onclick="showView('inicio')">Inicio</a>
+          <a href="#sobre" onclick="showView('sobre')">Sobre nosotros</a>
+          <a href="#recursos" onclick="showView('recursos')">Recursos</a>
+          <a href="#rutinas" onclick="showView('rutinas')">Rutinas</a>
+          <a href="#contacto" onclick="showView('contacto')">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <h4>Líneas de ayuda · Uruguay</h4>
+        <div class="foot-links">
+          <a href="tel:08000767">Línea Vida: 0800 0767 / *0767</a>
+          <a href="tel:08001920">Apoyo emocional: 0800 1920</a>
+          <a href="tel:911">Emergencia: 911 / 105</a>
+        </div>
+      </div>
+    </div>
+    <p class="disclaimer">Este sitio ofrece información general y no reemplaza la atención profesional. Si vos o alguien que conocés está en peligro inmediato, comunicate ahora con la Línea Vida (0800 0767) o con emergencias (911/105).</p>
+  </div>
+</footer>
+
+<a class="float-call" href="tel:08000767" aria-label="Llamar a la línea de ayuda">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.23a2 2 0 0 1 2.11-.45c.85.32 1.74.54 2.64.66A2 2 0 0 1 22 16.92z"/></svg>
+</a>
+
+<script>
+  function showView(name){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById('view-'+name).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+    document.getElementById('mainNav').classList.remove('open');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function showTab(name){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('tab-'+name).classList.add('active');
+  }
+
+  document.getElementById('menuToggle').addEventListener('click', ()=>{
+    document.getElementById('mainNav').classList.toggle('open');
+  });
+
+  function toggleRut(el){
+    el.classList.toggle('done');
+    updateProgress();
+  }
+  function updateProgress(){
+    const all = document.querySelectorAll('.rut-item');
+    const done = document.querySelectorAll('.rut-item.done');
+    const pct = all.length ? Math.round(done.length/all.length*100) : 0;
+    document.getElementById('progressRing').style.setProperty('--pct', pct);
+    document.getElementById('progressLabel').textContent = pct+'%';
+    const txt = done.length===0
+      ? 'Todavía no marcaste ninguna actividad hoy'
+      : done.length+' de '+all.length+' actividades marcadas hoy. ¡Seguí así!';
+    document.getElementById('progressText').textContent = txt;
+  }
+
+  const suggestions = [
+    'Aprendé 3 palabras en un idioma nuevo.',
+    'Cociná una receta que nunca probaste.',
+    'Escuchá un álbum de un género musical distinto.',
+    'Escribile una nota a alguien que hace tiempo no ves.',
+    'Sentate en un lugar de tu barrio en el que nunca te detuviste.',
+    'Dibujá o garabateá algo, sin importar cómo quede.',
+    'Mirá un documental sobre un tema que no conocés.',
+    'Sacá una foto de algo que te resulte lindo hoy.'
+  ];
+  function newSuggestion(){
+    const el = document.getElementById('newThingText');
+    let next;
+    do{ next = suggestions[Math.floor(Math.random()*suggestions.length)]; } while(next === el.textContent.replace('Esta semana: ',''));
+    el.textContent = 'Esta semana: ' + next;
+  }
+
+  // Nav click handlers + initial hash routing
+  document.querySelectorAll('.nav-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{ e.preventDefault(); showView(btn.dataset.view); });
+  });
+  const startView = (location.hash||'#inicio').replace('#','');
+  showView(['inicio','sobre','recursos','rutinas','contacto'].includes(startView) ? startView : 'inicio');
+
+  const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae sapien at ipsum consequat interdum.';
+  document.querySelectorAll('p, li, blockquote, .quick-item > span:not(.qi-icon), .hope-msg span, .team-card span, .contact-card > span:not(.c-icon), .rut-text span').forEach(element => {
+    element.textContent = loremText;
+  });
+</script>
+</body>
+</html>

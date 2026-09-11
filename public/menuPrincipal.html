@@ -1,1 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>PREVESUY - Prevención del Suicidio Uruguay</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Material+Icons" rel="stylesheet">
+	<style>
+		:root{
+			--verde-agua:#dff7f0;
+			--beige:#f4efe6;
+			--naranja:#d9642a;
+			--morado:#6b2e6b;
+			--gris:#59656f;
+			--max-width:1100px;
+			--card-radius:12px;
+		}
+		html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--verde-agua);color:#123}
+		header{background:transparent;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;max-width:var(--max-width);margin:0 auto}
+		.logo{display:flex;align-items:center;gap:10px}
+		.brand{font-weight:700;color:var(--morado)}
+		nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
+		nav a{color:var(--gris);text-decoration:none;font-weight:600}
+		.container{max-width:var(--max-width);margin:0 auto;padding:0 20px 60px;display:grid;grid-template-columns:1fr 320px;gap:24px}
+		.material-icons{font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;vertical-align:middle;white-space:nowrap;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+		/* Hero */
+		.hero{grid-column:1 / span 1;background:linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500"><rect width="100%" height="100%" fill="%23d9f3e9"/></svg>') center/cover no-repeat;border-radius:14px;padding:48px;display:flex;align-items:center;gap:24px}
+		.hero .copy{max-width:640px}
+		.hero h1{margin:0;font-size:32px;color:#083;line-height:1.1}
+		.hero p{margin:12px 0 20px;color:#254;opacity:0.9}
+		.cta{display:flex;gap:12px}
+		.btn{background:var(--naranja);color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+		.btn.secondary{background:transparent;color:var(--naranja);border:2px solid var(--naranja)}
+		.navbar-links{display:flex;align-items:center;gap:16px;list-style:none;margin:0;padding:0}
+		.navbar-links a{text-decoration:none;color:var(--gris);font-weight:700}
+		.navbar-links a:hover{color:var(--morado)}
+		/* Cards */
+		.cards{display:flex;gap:14px;margin-top:20px}
+		.card{flex:1;padding:18px;border-radius:var(--card-radius);display:flex;flex-direction:column;gap:12px}
+		.card .icon{width:48px;height:48px;background:rgba(0,0,0,0.06);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+		.card.green{background:#e6f8ef}
+		.card.beige{background:var(--beige)}
+		.card.brown{background:#efe0d7}
+		.card a{margin-top:auto;display:inline-block;text-decoration:none;padding:10px 12px;background:var(--naranja);color:#fff;border-radius:8px;font-weight:700}
+		/* Resources + testimonials */
+		.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+		.resource{background:white;border-radius:50%;width:72px;height:72px;display:flex;align-items:center;justify-content:center;margin:0 auto}
+		.resource-label{text-align:center;font-size:14px;color:var(--gris);margin-top:8px}
+		.testimonials{margin-top:8px;padding-left:12px}
+		.testimonial{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+		.testimonial img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+		.testimonial blockquote{margin:0;font-style:italic;color:#345}
+		/* Sidebar */
+		aside{background:transparent;padding:10px;position:sticky;top:16px;height:fit-content}
+		.help-btn{background:var(--naranja);color:#fff;padding:14px;border-radius:12px;font-weight:800;display:flex;align-items:center;gap:10px;justify-content:center;text-decoration:none}
+		.side-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}
+		.side-item{background:white;padding:10px;border-radius:10px;text-align:center;font-size:13px}
+		footer{background:var(--morado);color:#fff;padding:18px;margin-top:30px}
+		.footer-inner{max-width:var(--max-width);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+		.socials a{color:#fff;margin-left:8px;text-decoration:none}
+		/* Responsive */
+		@media(max-width:900px){.container{grid-template-columns:1fr;}.hero{padding:28px}.cards{flex-direction:column}.side-grid{grid-template-columns:repeat(3,1fr)}}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<div style="width:48px;height:48px;border-radius:10px;background:var(--morado);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">P</div>
+			<div>
+				<div class="brand">PREVESUY</div>
+				<div style="font-size:12px;color:var(--gris)">Prevención del Suicidio Uruguay</div>
+			</div>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="menuPrincipal.html">Inicio</a></li>
+				<li><a href="contactos.html">Contacto</a></li>
+				<li><a href="herramientas.html">Herramientas</a></li>
+				<li><a href="sobreNosotros.html">Sobre Nosotros</a></li>
+				<li><a href="soporteAyuda.html">Soporte y Ayuda</a></li>
+				<li><a href="terminosCondiciones.html">Términos y Condiciones</a></li>
+			</ul>
+		</nav>
+	</header>
 
+	<main class="container">
+		<section>
+			<section class="hero" aria-label="Sección principal">
+				<div class="copy">
+					<h1>No estás sola/o. Estamos acá para escucharte y ayudarte</h1>
+					<p>Encuentra apoyo inmediato, recursos y esperanza</p>
+					<div class="cta">
+						<a class="btn" href="tel:08004444">LLAMAR AHORA</a>
+						<button class="btn" id="openChat">CHAT EN VIVO</button>
+					</div>
+					<!-- Cards -->
+					<div class="cards">
+						<div class="card green" id="necesito">
+							<div class="icon"><span class="material-icons">person</span></div>
+							<div><strong>NECESITO AYUDA PARA MÍ</strong><div>Accede a crisis help, guías de autocuidado</div></div>
+							<a href="herramientas.html">Guías para mí</a>
+						</div>
+						<div class="card beige" id="ayudar">
+							<div class="icon"><span class="material-icons">groups</span></div>
+							<div><strong>QUIERO AYUDAR A ALGUIEN</strong><div>Identifica señales de alerta, cómo hablar</div></div>
+							<a href="soporteAyuda.html">Recursos para ayudar</a>
+						</div>
+						<div class="card brown" id="sobre">
+							<div class="icon"><span class="material-icons">info</span></div>
+							<div><strong>SOBRE PREVESUY</strong><div>Nuestra misión y quienes somos</div></div>
+							<a href="sobreNosotros.html">Conócenos</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section style="margin-top:18px">
+				<h3 style="margin:0 0 8px 0">Recursos y Herramientas</h3>
+				<div class="resources" id="recursos">
+					<div>
+						<div class="resource"><span class="material-icons">notifications_active</span></div>
+						<div class="resource-label">Señales</div>
+					</div>
+					<div>
+						<div class="resource"><span class="material-icons">quiz</span></div>
+						<div class="resource-label">Mitos</div>
+					</div>
+					<div>
+						<div class="resource"><span class="material-icons">folder_open</span></div>
+						<div class="resource-label">Directorio</div>
+					</div>
+					<div>
+						<div class="resource"><span class="material-icons">chat</span></div>
+						<div class="resource-label">Mitos</div>
+					</div>
+					<div>
+						<div class="resource"><span class="material-icons">menu_book</span></div>
+						<div class="resource-label">Guías</div>
+					</div>
+					<div>
+						<div class="resource"><span class="material-icons">link</span></div>
+						<div class="resource-label">Guías</div>
+					</div>
+				</div>
+
+				<div style="display:flex;gap:14px;margin-top:18px;align-items:flex-start">
+					<div style="flex:1">
+						<h4>Testimonios de Esperanza</h4>
+						<div class="testimonials">
+							<div class="testimonial">
+								<img src="https://via.placeholder.com/48" alt="Foto de María">
+								<blockquote>"Encontré apoyo y hoy puedo hablar de mi recuperación."</blockquote>
+							</div>
+							<div class="testimonial">
+								<img src="https://via.placeholder.com/48" alt="Foto de Juan">
+								<blockquote>"La guía me ayudó a pedir ayuda a tiempo."</blockquote>
+							</div>
+							<a href="#more">Más testimonios</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+
+		<aside>
+			<a class="help-btn" href="tel:08004444" style="display:block"><span class="material-icons">call</span> BOTÓN DE AYUDA LÍNEA NACIONAL DE AYUDA (0800-4444)</a>
+			<div class="side-grid" style="margin-top:12px">
+				<div class="side-item">Señales</div>
+				<div class="side-item">Partes</div>
+				<div class="side-item">Mitos</div>
+				<div class="side-item">Directorio</div>
+				<div class="side-item">Dutenciclo</div>
+				<div class="side-item">Guías</div>
+			</div>
+			<div style="margin-top:14px">
+				<h4 style="margin:6px 0">Testimonios</h4>
+				<div class="testimonial"><img src="https://via.placeholder.com/48" alt="Foto A"><blockquote>"Volví a sonreír."</blockquote></div>
+				<div class="testimonial"><img src="https://via.placeholder.com/48" alt="Foto B"><blockquote>"Aprendí a pedir ayuda."</blockquote></div>
+			</div>
+
+			<div style="background:var(--morado);color:#fff;padding:12px;border-radius:10px;margin-top:18px;text-align:center">
+				<div style="font-weight:800">PREVESUY</div>
+				<div style="font-size:14px;margin:8px 0">Teléfono: <a href="tel:08004444" style="color:#fff;text-decoration:underline">0800-4444</a><br>Email: <a href="mailto:ayuda@prevesuy.uy" style="color:#fff;text-decoration:underline">ayuda@prevesuy.uy</a></div>
+				<div style="margin-top:8px">
+					<a href="#" style="color:#fff;margin-right:8px">Facebook</a>
+					<a href="#" style="color:#fff;margin-right:8px">Instagram</a>
+					<a href="#" style="color:#fff">Twitter</a>
+				</div>
+			</div>
+		</aside>
+	</main>
+
+	<footer>
+		<div class="footer-inner">
+			<div>
+				<div style="font-weight:800">PREVESUY</div>
+			</div>
+			<div>
+				Teléfono: <a href="tel:08004444" style="color:#fff;text-decoration:underline">0800-4444</a> Email: <a href="mailto:ayuda@prevesuy.uy" style="color:#fff;text-decoration:underline">ayuda@prevesuy.uy</a>
+			</div>
+			<div class="socials">
+				<a href="#">Facebook</a>
+				<a href="#">Instagram</a>
+				<a href="#">Twitter</a>
+				<div style="margin-top:6px;font-size:13px"> <a href="#" style="color:#fff">Privacidad</a> · <a href="#" style="color:#fff">Ayuda</a></div>
+			</div>
+		</div>
+		<div style="max-width:var(--max-width);margin:12px auto 0;color:#fff;opacity:0.9">Copyright 2024</div>
+	</footer>
+
+	<script>
+		// Chat popup (simple demo)
+		document.getElementById('openChat').addEventListener('click', function(){
+			const w = window.open('about:blank','chat','width=400,height=600');
+			w.document.write('<p style="font-family:Inter,Arial">Chat en vivo - demo<br><a href="tel:08004444">Llamar 0800-4444</a></p>');
+		});
+	</script>
+</body>
+</html>

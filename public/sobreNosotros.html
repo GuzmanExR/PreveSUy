@@ -1,1 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreveSUY - Conócenos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            /* Colores Primarios y Neutros */
+            --cream: #fffdf8;
+            --white: #ffffff;
+            --text: #3e3a35;
+            --text-soft: #6b6660;
+            --line: #eee2c9;
 
+            /* Tonalidades Amarillas (Cálidos) */
+            --yellow: #ffedb8;
+            --yellow-soft: #fff6dc;
+            --yellow-deep: #f0c563;
+
+            /* Tonalidades Celeste (Calma y Frescura) */
+            --celeste: #bfe3ec;
+            --celeste-soft: #e6f6fa;
+            --celeste-deep: #8fcbda;
+
+            /* Tonalidades Naranja y Urgencia (Acentos y Botones) */
+            --orange: #f7b685;
+            --orange-soft: #fde3cd;
+            --orange-deep: #e8935c;
+            --urgent: #e8935c;
+            --urgent-deep: #d97a44;
+
+            /* Fuetes */
+            --font-family-title: 'Playfair Display', serif; /* Opcional: una fuente con serifa para el título grande */
+            --font-family-body: 'Inter', sans-serif; /* Opcional: una fuente sans-serif para el cuerpo */
+        }
+
+        /* Estilos Globales */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family-body);
+            background-color: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-soft);
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Sección 'Conócenos' */
+        .conocenos-section {
+            background-color: var(--celeste-soft);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .conocenos-title {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--orange-deep);
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .main-heading {
+            font-family: var(--font-family-title);
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+            color: var(--text);
+        }
+
+        .main-heading span {
+            color: var(--orange-deep);
+            font-style: italic;
+        }
+
+        .main-description {
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        /* Tarjetas (Misión, Visión, Compromiso) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 50px;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            text-align: left;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--orange-deep);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .card-text {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        /* Sección 'Equipo' */
+        .team-section {
+            background-color: var(--celeste-deep);
+            padding: 100px 0;
+            margin: 40px 0;
+            border-radius: 12px;
+        }
+
+        .team-title {
+            font-size: 2.5rem;
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .team-description {
+            color: var(--text-soft);
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 50px;
+        }
+
+        .team-member {
+            background-color: transparent;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .member-icon {
+            font-size: 3rem;
+            color: var(--orange-deep);
+            margin-bottom: 1rem;
+        }
+
+        .member-name {
+            color: var(--text);
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* Sección 'Contacto' */
+        .contact-section {
+            background-color: var(--yellow-soft);
+            padding: 80px 0;
+            margin: 40px 0;
+            border-radius: 12px;
+        }
+
+        .contact-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .contact-prompt {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background-color: var(--orange-deep);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: var(--urgent-deep);
+        }
+
+        /* Media Queries para Responsividad (Opcional, pero recomendado) */
+        @media (max-width: 900px) {
+            .cards-grid, .team-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+
+            .main-heading {
+                font-size: 2.5rem;
+            }
+
+            .contact-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-prompt {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; padding:14px; background:#fff; border-bottom:1px solid #eee2c9;">
+    <a href="menuPrincipal.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">home</span> Inicio</a>
+    <a href="contactos.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">mail</span> Contacto</a>
+    <a href="herramientas.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">build</span> Herramientas</a>
+    <a href="sobreNosotros.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">group</span> Sobre nosotros</a>
+    <a href="soporteAyuda.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">support_agent</span> Soporte y ayuda</a>
+    <a href="terminosCondiciones.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">description</span> Términos y condiciones</a>
+</nav>
+
+    <section class="conocenos-section">
+        <div class="container">
+            <span class="conocenos-title">CONÓCENOS</span>
+            <h1 class="main-heading">Creamos un espacio seguro para <span>escuchar</span>, <span>guiar</span> y <span>acompañar</span>.</h1>
+            <p class="main-description">PreveSUY nace con el propósito de centralizar herramientas, brindar apoyo y tender puentes en momentos donde más se necesita. Creemos en la ayuda accesible y comunitaria.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="card-icon fa-solid fa-eye"></i> <h3 class="card-title">Nuestra Misión</h3>
+                    <p class="card-text">Facilitar el acceso a recursos de salud mental y redes de apoyo a todas las personas en Uruguay, disminuyendo las barreras de información.</p>
+                </div>
+                <div class="card">
+                    <i class="card-icon fa-solid fa-pound-sign"></i> <h3 class="card-title">Nuestra Visión</h3>
+                    <p class="card-text">Ser la plataforma de referencia digital en prevención y contención, construyendo una sociedad más empática, informada y conectada.</p>
+                </div>
+                <div class="card">
+                    <i class="card-icon fa-solid fa-heart"></i> <h3 class="card-title">Compromiso</h3>
+                    <p class="card-text">Trabajar con absoluta responsabilidad, respeto y empatía, asegurando que cada dato y línea de ayuda guarde un estándar seguro y confiable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2 class="team-title">Las personas detrás de PreveSUY</h2>
+            <p class="team-description">Un equipo enfocado en generar un impacto positivo en la comunidad.</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
+                    <span class="member-role">Rol / Especialidad</span>
+                </div>
+                <div class="team-member">
+                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
+                    <span class="member-role">Rol / Especialidad</span>
+                </div>
+                <div class="team-member">
+                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
+                    <span class="member-role">Rol / Especialidad</span>
+                </div>
+                <div class="team-member">
+                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
+                    <span class="member-role">Rol / Especialidad</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <p class="contact-prompt">¿Querés sumarte al proyecto o hacernos una consulta?</p>
+                <a href="#" class="contact-button">Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</body>
+</html>

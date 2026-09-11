@@ -1,1 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto | PREVESUY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --body-bg: #eef4f5;
+      --panel-bg: #ffffff;
+      --text: #30405a;
+      --muted: #607188;
+      --soft-muted: #6e7b8d;
+      --line: #ccd7e1;
+      --blue: #315bd6;
+      --blue-deep: #294aac;
+      --blue-soft: #dceaff;
+      --blue-light: #eef5ff;
+      --orange: #e8925a;
+      --shadow: rgba(20, 40, 60, .12);
+      --font: "Inter", "Arial", sans-serif;
+    }
 
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--body-bg);
+      line-height: 1.5;
+    }
+
+    .topbar {
+      height: 56px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,.04);
+    }
+
+    .topbar-inner {
+      width: min(1100px, calc(100vw - 40px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      color: var(--blue);
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand .material-icons { font-size: 18px; color: var(--blue); }
+
+    .main-nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+    .main-nav a {
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: .2s ease;
+    }
+
+    .main-nav a:hover, .main-nav a.active { color: var(--blue); background: var(--blue-light); }
+
+    .contact-page {
+      min-height: calc(100vh - 200px);
+      padding: 34px 20px 80px;
+      background: var(--body-bg);
+    }
+
+    .contact-shell {
+      width: min(820px, calc(100vw - 40px));
+      margin: 0 auto;
+      background: transparent;
+    }
+
+    .contact-title {
+      margin: 0 0 12px;
+      text-align: center;
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      color: var(--text);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .contact-intro {
+      margin: 0 0 16px;
+      color: var(--soft-muted);
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .contact-illustration { display: flex; align-items: center; justify-content: center; margin: 20px auto 24px; }
+
+    .contact-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-soft));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px var(--shadow);
+      border: 3px solid #fff;
+      position: relative;
+    }
+
+    .contact-avatar::before, .contact-avatar::after {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: .25;
+      top: 14px;
+      left: -12px;
+      box-shadow: 44px 56px 0 var(--orange), 76px 10px 0 var(--blue-soft);
+    }
+
+    .contact-avatar .material-icons { color: var(--blue); font-size: 54px; position: relative; z-index: 2; }
+
+    .contact-info-title {
+      margin: 12px 0 12px;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.12rem;
+    }
+
+    .contact-details {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel-bg);
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 110px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .contact-card .material-icons { color: var(--blue); font-size: 30px; margin-bottom: 8px; }
+
+    .contact-card-title { margin: 0; font-size: .9rem; font-weight: 700; color: var(--text); }
+
+    .contact-card p { margin: 5px 0 0; color: var(--muted); font-size: .78rem; }
+
+    .contact-form-wrap {
+      background: var(--panel-bg);
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 20px 24px;
+      max-width: 560px;
+      margin: 20px auto 0;
+      box-shadow: 0 8px 22px var(--shadow);
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .contact-form label { font-size: .86rem; font-weight: 700; color: var(--text); }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--blue-light);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 11px 12px;
+      font-family: var(--font);
+      font-size: .9rem;
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(49, 91, 214, .12); }
+
+    .contact-form button {
+      align-self: center;
+      border: none;
+      background: var(--blue);
+      color: #fff;
+      font-family: var(--font);
+      font-weight: 800;
+      font-size: .96rem;
+      border-radius: 8px;
+      padding: 12px 26px;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .contact-form button:hover { background: var(--blue-deep); transform: translateY(-2px); }
+
+    .contact-footer {
+      border-top: 1px solid var(--line);
+      margin-top: 42px;
+      background: #eef3f7;
+      color: var(--soft-muted);
+      font-size: .84rem;
+      padding: 15px 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .contact-footer a { color: var(--blue); text-decoration: none; font-weight: 700; }
+
+    @media (max-width: 900px) {
+      .contact-details { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+      .topbar-inner { width: min(100vw, calc(100vw - 30px)); }
+      .main-nav { gap: 12px; justify-content: center; }
+    }
+
+    @media (max-width: 680px) {
+      .contact-details { grid-template-columns: 1fr; }
+      .topbar { height: auto; min-height: 56px; padding: 10px 0; }
+      .topbar-inner { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="menuPrincipal.html"><span class="material-icons">favorite</span>PreveSUY</a>
+      <nav class="main-nav">
+        <a href="menuPrincipal.html">Inicio</a>
+        <a href="servicios.html" aria-disabled="true">Servicios</a>
+        <a href="herramientas.html">Herramientas</a>
+        <a href="soporteAyuda.html">Soporte</a>
+        <a href="sobreNosotros.html">Sobre Nosotros</a>
+        <a class="active" href="contactos.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contact-page">
+    <section class="contact-shell">
+      <h1 class="contact-title">Contacto</h1>
+      <p class="contact-intro">Estamos aquí para escucharte y apoyarte. Por favor, utiliza los medios a continuación para ponerte en contacto con nosotros.</p>
+
+      <section class="contact-illustration" aria-label="Apoyo">
+        <div class="contact-avatar">
+          <span class="material-icons">chat_bubble</span>
+        </div>
+      </section>
+
+      <section class="contact-info">
+        <h2 class="contact-info-title">Información de Contacto</h2>
+        <p class="contact-intro">Nuestro equipo multidisciplinario está disponible para atenderte. No dudes en comunicarte para recibir orientación o apoyo.</p>
+
+        <div class="contact-details">
+          <article class="contact-card">
+            <span class="material-icons">phone</span>
+            <h3 class="contact-card-title">Línea Telefónica 24/7</h3>
+            <p>0800 444 123</p>
+          </article>
+          <article class="contact-card">
+            <span class="material-icons">mail</span>
+            <h3 class="contact-card-title">Correo Electrónico</h3>
+            <p>contacto@prevesuy.uy</p>
+          </article>
+          <article class="contact-card">
+            <span class="material-icons">location_on</span>
+            <h3 class="contact-card-title">Ubicación Física</h3>
+            <p>Montevideo, Uruguay</p>
+          </article>
+          <article class="contact-card">
+            <span class="material-icons">description</span>
+            <h3 class="contact-card-title">Formulario Web</h3>
+            <p>Respuesta en 24 horas</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-form-wrap">
+        <form class="contact-form">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" placeholder="Tu nombre completo">
+
+          <label for="correo">Correo Electrónico</label>
+          <input id="correo" type="email" placeholder="nombre@ejemplo.com">
+
+          <label for="mensaje">Tu mensaje</label>
+          <textarea id="mensaje" placeholder="Escribe aquí tu consulta..."></textarea>
+
+          <button type="button" onclick="alert('Mensaje enviado. Gracias por contactarte con PREVESUY.')">Enviar Mensaje</button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer class="contact-footer">
+    <a href="terminosCondiciones.html">Términos de Servicio</a>
+    <span>|</span>
+    <a href="terminosCondiciones.html">Política de Privacidad</a>
+    <span>|</span>
+    <a href="soporteAyuda.html">Ayuda Urgente</a>
+    <span>© 2026 PREVESUY. Todos los derechos reservados.</span>
+  </footer>
+</body>
+</html>

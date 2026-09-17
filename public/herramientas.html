@@ -1,390 +1,389 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PrevesUY — Recursos de ayuda</title>
-<style>
-  :root{
-    --celeste: #3FA9E0;
-    --celeste-oscuro: #1F7FB3;
-    --celeste-claro: #EAF6FC;
-    --blanco: #FFFFFF;
-    --naranja: #F2994A;
-    --naranja-oscuro: #D97C2B;
-    --amarillo: #F2C94C;
-    --texto: #223142;
-    --texto-suave: #5A6B7B;
-    --borde: #DCEAF2;
-    --radio: 14px;
-    --sombra: 0 6px 20px rgba(31,127,179,0.10);
-  }
-
-  *{box-sizing:border-box;}
-
-  body{
-    margin:0;
-    background: var(--celeste-claro);
-    color: var(--texto);
-    font-family: 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    line-height:1.5;
-  }
-
-  .wrap{
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 32px 20px 60px;
-  }
-
-  header.hero{
-    background: linear-gradient(135deg, var(--celeste) 0%, var(--celeste-oscuro) 100%);
-    border-radius: var(--radio);
-    padding: 36px 32px;
-    color: var(--blanco);
-    position: relative;
-    overflow: hidden;
-  }
-
-  header.hero::after{
-    content:"";
-    position:absolute;
-    right:-40px; top:-40px;
-    width:160px; height:160px;
-    border-radius:50%;
-    background: var(--amarillo);
-    opacity:0.18;
-  }
-
-  header.hero::before{
-    content:"";
-    position:absolute;
-    right:60px; bottom:-60px;
-    width:120px; height:120px;
-    border-radius:50%;
-    background: var(--naranja);
-    opacity:0.18;
-  }
-
-  header.hero h1{
-    margin:0 0 8px;
-    font-size: 1.9rem;
-    font-weight:800;
-    letter-spacing: -0.01em;
-  }
-
-  header.hero p{
-    margin:0;
-    max-width: 560px;
-    font-size: 1.02rem;
-    color: rgba(255,255,255,0.92);
-  }
-
-  .toolbar{
-    margin-top:28px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-  }
-
-  .search-box{
-    position:relative;
-  }
-
-  .search-box input{
-    width:100%;
-    padding:11px 14px 11px 38px;
-    border-radius: 10px;
-    border:1.5px solid var(--borde);
-    background: var(--blanco);
-    font-size:0.95rem;
-    color: var(--texto);
-    outline:none;
-  }
-
-  .search-box input:focus{ border-color: var(--celeste); }
-
-  .search-box svg{
-    position:absolute;
-    left:12px; top:50%;
-    transform:translateY(-50%);
-    width:16px; height:16px;
-    color: var(--texto-suave);
-  }
-
-  .filter-row{
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-  }
-
-  .filter-row .filter-label{
-    flex: 0 0 78px;
-    padding-top:9px;
-    font-size:0.78rem;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    color: var(--celeste-oscuro);
-  }
-
-  .chips{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-
-  .chip{
-    padding:8px 14px;
-    border-radius:999px;
-    border:1.5px solid var(--borde);
-    background: var(--blanco);
-    color: var(--texto-suave);
-    font-size:0.88rem;
-    font-weight:700;
-    cursor:pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-    white-space:nowrap;
-  }
-
-  .chips.categorias .chip.active{
-    background: var(--naranja);
-    border-color: var(--naranja);
-    color: var(--blanco);
-  }
-
-  .chips.edades .chip.active{
-    background: var(--celeste);
-    border-color: var(--celeste);
-    color: var(--blanco);
-  }
-
-  .grid{
-    margin-top:26px;
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap:16px;
-  }
-
-  .card{
-    background: var(--blanco);
-    border-radius: var(--radio);
-    border: 1.5px solid var(--borde);
-    padding: 18px 18px 16px;
-    box-shadow: var(--sombra);
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    min-height: 150px;
-  }
-
-  .card.placeholder{
-    background: transparent;
-    border: 1.5px dashed #B9D8E8;
-    box-shadow:none;
-    justify-content:center;
-    align-items:flex-start;
-    color: var(--texto-suave);
-  }
-
-  .tag-row{
-    display:flex;
-    gap:6px;
-    flex-wrap:wrap;
-  }
-
-  .tag{
-    display:inline-flex;
-    padding:4px 10px;
-    border-radius:999px;
-    font-size:0.7rem;
-    font-weight:800;
-  }
-
-  .tag.cat{
-    background: var(--amarillo);
-    color: #6B5008;
-  }
-
-  .tag.edad{
-    background: var(--celeste-claro);
-    color: var(--celeste-oscuro);
-    border: 1px solid var(--celeste);
-  }
-
-  .card h3{
-    margin:0;
-    font-size:1.02rem;
-    color: var(--texto);
-  }
-
-  .card p{
-    margin:0;
-    font-size:0.88rem;
-    color: var(--texto-suave);
-    flex-grow:1;
-  }
-
-  .placeholder p{
-    font-size:0.85rem;
-    margin:0;
-  }
-
-  .empty-global{
-    grid-column: 1/-1;
-    text-align:center;
-    padding: 48px 20px;
-    color: var(--texto-suave);
-  }
-
-  .empty-global strong{
-    display:block;
-    color:var(--texto);
-    margin-bottom:6px;
-    font-size:1.05rem;
-  }
-
-  footer.note{
-    margin-top:30px;
-    font-size:0.8rem;
-    color: var(--texto-suave);
-    text-align:center;
-  }
-
-  @media (max-width:560px){
-    header.hero{ padding:26px 20px; }
-    .filter-row{ flex-direction:column; }
-    .filter-row .filter-label{ padding-top:0; }
-  }
-</style>
-</head>
-<body>
-
-<div class="wrap">
-
-  <header class="hero">
-    <h1>Recursos y herramientas</h1>
-    <p>Un espacio con líneas de ayuda, guías, contactos y materiales pensados para acompañarte a vos o a alguien que necesite apoyo.</p>
-  </header>
-
-  <div class="toolbar">
-    <div class="search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="buscador" placeholder="Buscar un recurso...">
-    </div>
-
-    <div class="filter-row">
-      <span class="filter-label">Categoría</span>
-      <div class="chips categorias" id="chipsCategoria"></div>
-    </div>
-
-    <div class="filter-row">
-      <span class="filter-label">Edad</span>
-      <div class="chips edades" id="chipsEdad"></div>
-    </div>
-  </div>
-
-  <section class="grid" id="grid"></section>
-
-  <footer class="note">Módulo de recursos de PrevesUY · este panel muestra los lugares reservados para cada tipo de ayuda; el contenido se irá cargando más adelante.</footer>
-</div>
-
-<script>
-(function(){
-  const CATEGORIAS = ["Líneas de ayuda","Documentos y guías","Videos","Contactos institucionales","Contenido educativo"];
-  const EDADES = ["Niños","Adolescentes","Adultos"];
-
-  // Lugares reservados: uno por cada combinación de categoría y edad.
-  // No contienen datos reales todavía — se completan cuando se conecte el contenido.
-  const lugares = [];
-  CATEGORIAS.forEach(cat=>{
-    EDADES.forEach(edad=>{
-      lugares.push({
-        id: cat + '|' + edad,
-        categoria: cat,
-        edad: edad,
-        titulo: cat,
-        descripcion: 'Espacio reservado para un recurso de esta categoría dirigido a ' + edad.toLowerCase() + '.'
-      });
-    });
-  });
-
-  let categoriaActiva = "Todas";
-  let edadActiva = "Todas";
-  let textoBusqueda = "";
-
-  const grid = document.getElementById('grid');
-  const chipsCategoria = document.getElementById('chipsCategoria');
-  const chipsEdad = document.getElementById('chipsEdad');
-  const buscador = document.getElementById('buscador');
-
-  function renderChipsCategoria(){
-    const all = ["Todas", ...CATEGORIAS];
-    chipsCategoria.innerHTML = all.map(c =>
-      `<button type="button" class="chip ${c===categoriaActiva?'active':''}" data-cat="${c}">${c}</button>`
-    ).join('');
-    chipsCategoria.querySelectorAll('.chip').forEach(el=>{
-      el.addEventListener('click', ()=>{
-        categoriaActiva = el.dataset.cat;
-        renderChipsCategoria();
-        renderGrid();
-      });
-    });
-  }
-
-  function renderChipsEdad(){
-    const all = ["Todas", ...EDADES];
-    chipsEdad.innerHTML = all.map(e =>
-      `<button type="button" class="chip ${e===edadActiva?'active':''}" data-edad="${e}">${e}</button>`
-    ).join('');
-    chipsEdad.querySelectorAll('.chip').forEach(el=>{
-      el.addEventListener('click', ()=>{
-        edadActiva = el.dataset.edad;
-        renderChipsEdad();
-        renderGrid();
-      });
-    });
-  }
-
-  function renderGrid(){
-    const lista = lugares.filter(r=>{
-      const pasaCat = categoriaActiva==='Todas' || r.categoria===categoriaActiva;
-      const pasaEdad = edadActiva==='Todas' || r.edad===edadActiva;
-      const pasaTexto = !textoBusqueda ||
-        r.titulo.toLowerCase().includes(textoBusqueda) ||
-        r.descripcion.toLowerCase().includes(textoBusqueda);
-      return pasaCat && pasaEdad && pasaTexto;
-    });
-
-    if(lista.length===0){
-      grid.innerHTML = `<div class="empty-global">
-        <strong>No hay lugares que coincidan con este filtro</strong>
-        Probá con otra combinación de categoría y edad.
-      </div>`;
-      return;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PREVESUY | Herramientas</title>
+  <style>
+    :root {
+      --p1: #F9E8A2;
+      --p2: #B4E1EB;
+      --p3: #95BDD7;
+      --p4: #78A4CB;
+      --ink: #1d2d3b;
+      --muted: #4f6477;
+      --white: #ffffff;
+      --panel: #f9fbfe;
+      --line: rgba(120, 164, 203, 0.22);
+      --shadow: 0 18px 40px rgba(28, 55, 77, 0.10);
+      --radius: 22px;
     }
 
-    grid.innerHTML = lista.map(r=>{
-      return `<article class="card placeholder">
-        <div class="tag-row">
-          <span class="tag cat">${r.categoria}</span>
-          <span class="tag edad">${r.edad}</span>
-        </div>
-        <h3>${r.titulo}</h3>
-        <p>${r.descripcion}</p>
-      </article>`;
-    }).join('');
-  }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fffaf0 0%, #edf8fd 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
 
-  buscador.addEventListener('input', ()=>{
-    textoBusqueda = buscador.value.trim().toLowerCase();
-    renderGrid();
-  });
+    a { text-decoration: none; color: inherit; }
 
-  renderChipsCategoria();
-  renderChipsEdad();
-  renderGrid();
-})();
-</script>
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(249, 232, 162, 0.92);
+      border-bottom: 1px solid rgba(120, 164, 203, 0.28);
+      box-shadow: 0 6px 22px rgba(28, 55, 77, 0.06);
+    }
 
+    .header-inner {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      font-size: 1.08rem;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: rgba(255,255,255,0.3);
+      border: 1px solid rgba(120, 164, 203, 0.18);
+      transition: 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a.active {
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      color: var(--white);
+      box-shadow: 0 10px 22px rgba(120, 164, 203, 0.28);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(120, 164, 203, 0.28);
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 10px;
+      margin: 5px auto;
+    }
+
+    .page-shell {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 38px 0 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      border: 1px solid rgba(120, 164, 203, 0.18);
+      border-radius: var(--radius);
+      padding: 34px 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .toolbar {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(120, 164, 203, 0.2);
+      border-radius: var(--radius);
+      padding: 18px 18px 20px;
+      box-shadow: 0 12px 24px rgba(28, 55, 77, 0.04);
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 1px solid rgba(120, 164, 203, 0.2);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--ink);
+      padding: 14px 16px 14px 42px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--p4);
+      box-shadow: 0 0 0 4px rgba(120, 164, 203, 0.12);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--muted);
+    }
+
+    .filter-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      min-width: 92px;
+      padding-top: 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: 1px solid rgba(120, 164, 203, 0.24);
+      background: var(--white);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .chip.active {
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      border-color: transparent;
+      color: var(--white);
+      box-shadow: 0 12px 20px rgba(120, 164, 203, 0.22);
+    }
+
+    .grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 12px 24px rgba(28, 55, 77, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 200px;
+    }
+
+    .resource-card.yellow { background: linear-gradient(180deg, rgba(249, 232, 162, 0.24), rgba(255,255,255,0.95)); }
+    .resource-card.blue { background: linear-gradient(180deg, rgba(180, 225, 235, 0.28), rgba(255,255,255,0.95)); }
+    .resource-card.sky { background: linear-gradient(180deg, rgba(149, 189, 215, 0.18), rgba(255,255,255,0.95)); }
+
+    .resource-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 6px 10px;
+    }
+
+    .tag.category {
+      background: rgba(249, 232, 162, 0.8);
+      color: #5d5320;
+    }
+
+    .tag.age {
+      background: rgba(180, 225, 235, 0.75);
+      color: #2d5870;
+    }
+
+    .resource-card h3 {
+      margin: 0;
+      font-size: 1.08rem;
+    }
+
+    .resource-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      flex: 1;
+    }
+
+    .resource-card a {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 12px 20px rgba(28, 55, 77, 0.04);
+      padding: 42px 18px;
+      text-align: center;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .empty-state strong {
+      color: var(--ink);
+      font-size: 1.08rem;
+    }
+
+    @media (max-width: 860px) {
+      .header-inner { position: relative; }
+      .nav-toggle { display: block; }
+      .site-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.96);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 10px;
+      }
+      .site-nav.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-row { flex-direction: column; }
+      .filter-label { padding-top: 0; }
+    }
+  </style>
+</head>
+<body data-page="herramientas">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">P</span>
+        PREVESUY
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="sobreNosotros.html">Sobre nosotros</a>
+        <a href="herramientas.html" class="active">Herramientas</a>
+        <a href="contactos.html">Contacto</a>
+        <a href="soporteAyuda.html">Soporte</a>
+        <a href="terminosCondiciones.html">Términos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="hero">
+      <h1>Recursos y herramientas</h1>
+      <p>Un espacio pensado para acompañarte con información clara, apoyo inmediato y materiales útiles según tu situación.</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M16.65 16.65L21 21"></path></svg>
+        <input type="text" id="resourceSearch" placeholder="Buscar un recurso...">
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">Categoría</span>
+        <div class="chips" id="chipsCategoria"></div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">Edad</span>
+        <div class="chips" id="chipsEdad"></div>
+      </div>
+    </div>
+
+    <section class="grid" id="resourceGrid"></section>
+  </main>
+
+  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/herramientas.js"></script>
 </body>
 </html>

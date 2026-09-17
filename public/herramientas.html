@@ -1,407 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Herramientas | PREVESUY</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Material+Icons" rel="stylesheet">
-  <style>
-    :root {
-      --body: #eef4f5;
-      --panel: #ffffff;
-      --text: #30405a;
-      --muted: #607188;
-      --soft: #6a7890;
-      --line: #ccd7e1;
-      --blue: #315bd6;
-      --blue-deep: #294aac;
-      --blue-soft: #dceaff;
-      --orange: #e8925a;
-      --orange-soft: #fde7dd;
-      --green-soft: #d9f7ee;
-      --shadow: rgba(20, 40, 60, .12);
-      --font: "Inter", "Arial", sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrevesUY — Recursos de ayuda</title>
+<style>
+  :root{
+    --celeste: #3FA9E0;
+    --celeste-oscuro: #1F7FB3;
+    --celeste-claro: #EAF6FC;
+    --blanco: #FFFFFF;
+    --naranja: #F2994A;
+    --naranja-oscuro: #D97C2B;
+    --amarillo: #F2C94C;
+    --texto: #223142;
+    --texto-suave: #5A6B7B;
+    --borde: #DCEAF2;
+    --radio: 14px;
+    --sombra: 0 6px 20px rgba(31,127,179,0.10);
+  }
 
-    * { box-sizing: border-box; }
+  *{box-sizing:border-box;}
 
-    body {
-      margin: 0;
-      color: var(--text);
-      background: var(--body);
-      font-family: var(--font);
-      line-height: 1.5;
-    }
+  body{
+    margin:0;
+    background: var(--celeste-claro);
+    color: var(--texto);
+    font-family: 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height:1.5;
+  }
 
-    .topbar {
-      min-height: 56px;
-      background: var(--panel);
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,.04);
-    }
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
 
-    .topbar-inner {
-      width: min(1100px, calc(100vw - 40px));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
+  header.hero{
+    background: linear-gradient(135deg, var(--celeste) 0%, var(--celeste-oscuro) 100%);
+    border-radius: var(--radio);
+    padding: 36px 32px;
+    color: var(--blanco);
+    position: relative;
+    overflow: hidden;
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--blue);
-      font-size: 1.1rem;
-      font-weight: 800;
-      text-decoration: none;
-      white-space: nowrap;
-    }
+  header.hero::after{
+    content:"";
+    position:absolute;
+    right:-40px; top:-40px;
+    width:160px; height:160px;
+    border-radius:50%;
+    background: var(--amarillo);
+    opacity:0.18;
+  }
 
-    .brand .material-icons {
-      font-size: 18px;
-    }
+  header.hero::before{
+    content:"";
+    position:absolute;
+    right:60px; bottom:-60px;
+    width:120px; height:120px;
+    border-radius:50%;
+    background: var(--naranja);
+    opacity:0.18;
+  }
 
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
+  header.hero h1{
+    margin:0 0 8px;
+    font-size: 1.9rem;
+    font-weight:800;
+    letter-spacing: -0.01em;
+  }
 
-    .main-nav a {
-      color: var(--muted);
-      font-size: .84rem;
-      font-weight: 700;
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 8px;
-      transition: .2s ease;
-    }
+  header.hero p{
+    margin:0;
+    max-width: 560px;
+    font-size: 1.02rem;
+    color: rgba(255,255,255,0.92);
+  }
 
-    .main-nav a:hover,
-    .main-nav a.active {
-      color: var(--blue);
-      background: var(--blue-soft);
-    }
+  .toolbar{
+    margin-top:28px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
 
-    .tools-page {
-      width: min(1100px, calc(100vw - 40px));
-      margin: 0 auto;
-      padding: 34px 0 70px;
-    }
+  .search-box{
+    position:relative;
+  }
 
-    .tools-hero {
-      background: linear-gradient(135deg, var(--blue-soft), var(--green-soft));
-      border-radius: 18px;
-      padding: 36px 40px;
-      border: 1px solid var(--line);
-      box-shadow: 0 8px 22px var(--shadow);
-    }
+  .search-box input{
+    width:100%;
+    padding:11px 14px 11px 38px;
+    border-radius: 10px;
+    border:1.5px solid var(--borde);
+    background: var(--blanco);
+    font-size:0.95rem;
+    color: var(--texto);
+    outline:none;
+  }
 
-    .tools-hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items: center;
-    }
+  .search-box input:focus{ border-color: var(--celeste); }
 
-    .tools-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: .82rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--blue-deep);
-      background: var(--panel);
-      border-radius: 50px;
-      padding: 8px 12px;
-    }
+  .search-box svg{
+    position:absolute;
+    left:12px; top:50%;
+    transform:translateY(-50%);
+    width:16px; height:16px;
+    color: var(--texto-suave);
+  }
 
-    .tools-hero h1 {
-      margin: 16px 0 12px;
-      font-size: clamp(2.1rem, 3vw, 2.8rem);
-      line-height: 1.2;
-      color: var(--text);
-    }
+  .filter-row{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+  }
 
-    .tools-hero p {
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
+  .filter-row .filter-label{
+    flex: 0 0 78px;
+    padding-top:9px;
+    font-size:0.78rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color: var(--celeste-oscuro);
+  }
 
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: none;
-      border-radius: 10px;
-      padding: 11px 18px;
-      font-family: var(--font);
-      font-weight: 800;
-      font-size: .88rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
+  .chip{
+    padding:8px 14px;
+    border-radius:999px;
+    border:1.5px solid var(--borde);
+    background: var(--blanco);
+    color: var(--texto-suave);
+    font-size:0.88rem;
+    font-weight:700;
+    cursor:pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space:nowrap;
+  }
 
-    .btn-primary {
-      background: var(--blue);
-      color: #fff;
-      box-shadow: 0 7px 14px var(--shadow);
-    }
+  .chips.categorias .chip.active{
+    background: var(--naranja);
+    border-color: var(--naranja);
+    color: var(--blanco);
+  }
 
-    .btn-secondary {
-      background: var(--panel);
-      color: var(--blue);
-      border: 1px solid var(--blue);
-    }
+  .chips.edades .chip.active{
+    background: var(--celeste);
+    border-color: var(--celeste);
+    color: var(--blanco);
+  }
 
-    .btn:hover { transform: translateY(-2px); }
+  .grid{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap:16px;
+  }
 
-    .hero-panel {
-      background: var(--panel);
-      border-radius: 16px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      min-height: 180px;
-      text-align: center;
-    }
+  .card{
+    background: var(--blanco);
+    border-radius: var(--radio);
+    border: 1.5px solid var(--borde);
+    padding: 18px 18px 16px;
+    box-shadow: var(--sombra);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-height: 150px;
+  }
 
-    .hero-panel .material-icons {
-      font-size: 64px;
-      color: var(--blue);
-    }
+  .card.placeholder{
+    background: transparent;
+    border: 1.5px dashed #B9D8E8;
+    box-shadow:none;
+    justify-content:center;
+    align-items:flex-start;
+    color: var(--texto-suave);
+  }
 
-    .hero-panel strong {
-      font-size: 1.1rem;
-    }
+  .tag-row{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
 
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-    }
+  .tag{
+    display:inline-flex;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:0.7rem;
+    font-weight:800;
+  }
 
-    .tool-card {
-      background: var(--panel);
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      padding: 22px 18px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: transform .2s ease;
-    }
+  .tag.cat{
+    background: var(--amarillo);
+    color: #6B5008;
+  }
 
-    .tool-card:hover {
-      transform: translateY(-4px);
-    }
+  .tag.edad{
+    background: var(--celeste-claro);
+    color: var(--celeste-oscuro);
+    border: 1px solid var(--celeste);
+  }
 
-    .tool-card .material-icons {
-      color: var(--orange);
-      font-size: 34px;
-      display: block;
-      margin-bottom: 14px;
-    }
+  .card h3{
+    margin:0;
+    font-size:1.02rem;
+    color: var(--texto);
+  }
 
-    .tool-card h3 {
-      font-size: 1rem;
-      color: var(--text);
-      margin: 0 0 8px;
-    }
+  .card p{
+    margin:0;
+    font-size:0.88rem;
+    color: var(--texto-suave);
+    flex-grow:1;
+  }
 
-    .tool-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .84rem;
-    }
+  .placeholder p{
+    font-size:0.85rem;
+    margin:0;
+  }
 
-    .tool-card a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--blue);
-      font-weight: 800;
-      margin-top: 14px;
-      font-size: .84rem;
-      text-decoration: none;
-    }
+  .empty-global{
+    grid-column: 1/-1;
+    text-align:center;
+    padding: 48px 20px;
+    color: var(--texto-suave);
+  }
 
-    .tool-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 22px;
-    }
+  .empty-global strong{
+    display:block;
+    color:var(--texto);
+    margin-bottom:6px;
+    font-size:1.05rem;
+  }
 
-    .tool-list-panel {
-      background: var(--panel);
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      padding: 22px 20px;
-      box-shadow: 0 6px 14px var(--shadow);
-    }
+  footer.note{
+    margin-top:30px;
+    font-size:0.8rem;
+    color: var(--texto-suave);
+    text-align:center;
+  }
 
-    .tool-list-panel h2 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      color: var(--text);
-    }
-
-    .tool-list-panel ul {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    .tool-list-panel li {
-      margin: 10px 0;
-    }
-
-    .tools-footer {
-      margin-top: 24px;
-      background: var(--panel);
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      padding: 16px 18px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .tools-footer .material-icons { color: var(--orange); }
-
-    @media (max-width: 820px) {
-      .tools-hero-grid,
-      .tools-grid,
-      .tool-list { grid-template-columns: 1fr; }
-      .main-nav { gap: 12px; justify-content: center; }
-    }
-  </style>
+  @media (max-width:560px){
+    header.hero{ padding:26px 20px; }
+    .filter-row{ flex-direction:column; }
+    .filter-row .filter-label{ padding-top:0; }
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="menuPrincipal.html"><span class="material-icons">favorite</span>PreveSUY</a>
-      <nav class="main-nav">
-        <a href="menuPrincipal.html">Inicio</a>
-        <a href="contactos.html">Contacto</a>
-        <a class="active" href="herramientas.html">Herramientas</a>
-        <a href="sobreNosotros.html">Sobre Nosotros</a>
-        <a href="soporteAyuda.html">Soporte y Ayuda</a>
-        <a href="terminosCondiciones.html">Términos y Condiciones</a>
-      </nav>
-    </div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Recursos y herramientas</h1>
+    <p>Un espacio con líneas de ayuda, guías, contactos y materiales pensados para acompañarte a vos o a alguien que necesite apoyo.</p>
   </header>
 
-  <main class="tools-page">
-    <section class="tools-hero">
-      <div class="tools-hero-grid">
-        <div>
-          <div class="tools-kicker"><span class="material-icons">build</span>Herramientas PREVESUY</div>
-          <h1>Recursos para cuidarte y acompañar</h1>
-          <p>Encontrá información, apoyo directo y actividades de prevención para acompañarte a pedir ayuda, sostener a otra persona o cuidar tu bienestar.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="soporteAyuda.html"><span class="material-icons">support_agent</span>Solicitar apoyo</a>
-            <a class="btn btn-secondary" href="contactos.html"><span class="material-icons">mail</span>Contacto</a>
-          </div>
+  <div class="toolbar">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="buscador" placeholder="Buscar un recurso...">
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Categoría</span>
+      <div class="chips categorias" id="chipsCategoria"></div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Edad</span>
+      <div class="chips edades" id="chipsEdad"></div>
+    </div>
+  </div>
+
+  <section class="grid" id="grid"></section>
+
+  <footer class="note">Módulo de recursos de PrevesUY · este panel muestra los lugares reservados para cada tipo de ayuda; el contenido se irá cargando más adelante.</footer>
+</div>
+
+<script>
+(function(){
+  const CATEGORIAS = ["Líneas de ayuda","Documentos y guías","Videos","Contactos institucionales","Contenido educativo"];
+  const EDADES = ["Niños","Adolescentes","Adultos"];
+
+  // Lugares reservados: uno por cada combinación de categoría y edad.
+  // No contienen datos reales todavía — se completan cuando se conecte el contenido.
+  const lugares = [];
+  CATEGORIAS.forEach(cat=>{
+    EDADES.forEach(edad=>{
+      lugares.push({
+        id: cat + '|' + edad,
+        categoria: cat,
+        edad: edad,
+        titulo: cat,
+        descripcion: 'Espacio reservado para un recurso de esta categoría dirigido a ' + edad.toLowerCase() + '.'
+      });
+    });
+  });
+
+  let categoriaActiva = "Todas";
+  let edadActiva = "Todas";
+  let textoBusqueda = "";
+
+  const grid = document.getElementById('grid');
+  const chipsCategoria = document.getElementById('chipsCategoria');
+  const chipsEdad = document.getElementById('chipsEdad');
+  const buscador = document.getElementById('buscador');
+
+  function renderChipsCategoria(){
+    const all = ["Todas", ...CATEGORIAS];
+    chipsCategoria.innerHTML = all.map(c =>
+      `<button type="button" class="chip ${c===categoriaActiva?'active':''}" data-cat="${c}">${c}</button>`
+    ).join('');
+    chipsCategoria.querySelectorAll('.chip').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        categoriaActiva = el.dataset.cat;
+        renderChipsCategoria();
+        renderGrid();
+      });
+    });
+  }
+
+  function renderChipsEdad(){
+    const all = ["Todas", ...EDADES];
+    chipsEdad.innerHTML = all.map(e =>
+      `<button type="button" class="chip ${e===edadActiva?'active':''}" data-edad="${e}">${e}</button>`
+    ).join('');
+    chipsEdad.querySelectorAll('.chip').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        edadActiva = el.dataset.edad;
+        renderChipsEdad();
+        renderGrid();
+      });
+    });
+  }
+
+  function renderGrid(){
+    const lista = lugares.filter(r=>{
+      const pasaCat = categoriaActiva==='Todas' || r.categoria===categoriaActiva;
+      const pasaEdad = edadActiva==='Todas' || r.edad===edadActiva;
+      const pasaTexto = !textoBusqueda ||
+        r.titulo.toLowerCase().includes(textoBusqueda) ||
+        r.descripcion.toLowerCase().includes(textoBusqueda);
+      return pasaCat && pasaEdad && pasaTexto;
+    });
+
+    if(lista.length===0){
+      grid.innerHTML = `<div class="empty-global">
+        <strong>No hay lugares que coincidan con este filtro</strong>
+        Probá con otra combinación de categoría y edad.
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML = lista.map(r=>{
+      return `<article class="card placeholder">
+        <div class="tag-row">
+          <span class="tag cat">${r.categoria}</span>
+          <span class="tag edad">${r.edad}</span>
         </div>
-        <aside class="hero-panel">
-          <span class="material-icons">health_and_safety</span>
-          <strong>Mapa de apoyo</strong>
-          <div class="hero-panel-text">Apoyo emocional · Guías · Seguridad · Red de ayuda</div>
-        </aside>
-      </div>
-    </section>
+        <h3>${r.titulo}</h3>
+        <p>${r.descripcion}</p>
+      </article>`;
+    }).join('');
+  }
 
-    <section class="tools-grid">
-      <article class="tool-card">
-        <span class="material-icons">local_phone</span>
-        <h3>Línea urgente</h3>
-        <p>Si necesitas ayuda inmediata, podés llamar al 0800-4444 desde cualquier lugar.</p>
-        <a href="tel:08004444">Llamar <span class="material-icons">arrow_forward</span></a>
-      </article>
-      <article class="tool-card">
-        <span class="material-icons">psychology</span>
-        <h3>Guías de autocuidado</h3>
-        <p>Herramientas para reconocer señales, cuidar tu respiración y gestionar la crisis.</p>
-        <a href="soporteAyuda.html">Ver guía <span class="material-icons">arrow_forward</span></a>
-      </article>
-      <article class="tool-card">
-        <span class="material-icons">groups</span>
-        <h3>Cómo apoyar a otra persona</h3>
-        <p>Ideas para iniciar una conversación, escuchar y orientar con respeto.</p>
-        <a href="sobreNosotros.html">Más información <span class="material-icons">arrow_forward</span></a>
-      </article>
-      <article class="tool-card">
-        <span class="material-icons">menu_book</span>
-        <h3>Información útil</h3>
-        <p>Recursos claros para prevenir riesgos y fortalecer vínculos de cuidado.</p>
-        <a href="terminosCondiciones.html">Leer más <span class="material-icons">arrow_forward</span></a>
-      </article>
-      <article class="tool-card">
-        <span class="material-icons">flag</span>
-        <h3>Señales de alerta</h3>
-        <p>Aprendé a reconocer cambios en el estado emocional y actuar con calma.</p>
-        <a href="soporteAyuda.html">Revisar <span class="material-icons">arrow_forward</span></a>
-      </article>
-      <article class="tool-card">
-        <span class="material-icons">notifications_active</span>
-        <h3>Plan de seguridad</h3>
-        <p>Generá un plan simple, accesible y concreto para la próxima crisis.</p>
-        <a href="contactos.html">Crear plan <span class="material-icons">arrow_forward</span></a>
-      </article>
-    </section>
+  buscador.addEventListener('input', ()=>{
+    textoBusqueda = buscador.value.trim().toLowerCase();
+    renderGrid();
+  });
 
-    <section class="tool-list">
-      <section class="tool-list-panel">
-        <h2>Pasos de apoyo</h2>
-        <ul>
-          <li>Reconocer señales y hablar con calma.</li>
-          <li>Escuchar sin juzgar ni presionar.</li>
-          <li>Solicitar ayuda especializada y acompañar.</li>
-          <li>Crear un plan de respuesta segura.</li>
-        </ul>
-      </section>
-      <section class="tool-list-panel">
-        <h2>Apoyo multidisciplinario</h2>
-        <ul>
-          <li>Orientación emocional.</li>
-          <li>Directorio de recursos públicos y sociales.</li>
-          <li>Consejos para autocuidado.</li>
-          <li>Canal de comunicación con PREVESUY.</li>
-        </ul>
-      </section>
-    </section>
+  renderChipsCategoria();
+  renderChipsEdad();
+  renderGrid();
+})();
+</script>
 
-    <section class="tools-footer">
-      <span class="material-icons">security</span>
-      <span>Tu consulta es confidencial y tu bienestar es prioridad.</span>
-      <a class="btn btn-secondary" href="contactos.html">Hablar con un equipo</a>
-    </section>
-  </main>
 </body>
 </html>
-

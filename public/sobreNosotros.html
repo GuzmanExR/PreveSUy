@@ -1,325 +1,375 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PreveSUY - Conócenos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Material+Icons" rel="stylesheet">
-    <style>
-        :root {
-            /* Colores Primarios y Neutros */
-            --cream: #fffdf8;
-            --white: #ffffff;
-            --text: #3e3a35;
-            --text-soft: #6b6660;
-            --line: #eee2c9;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PREVESUY | Sobre nosotros</title>
+  <style>
+    :root {
+      --p1: #F9E8A2;
+      --p2: #B4E1EB;
+      --p3: #95BDD7;
+      --p4: #78A4CB;
+      --ink: #1d2d3b;
+      --muted: #4f6477;
+      --white: #ffffff;
+      --panel: #f7fbff;
+      --line: rgba(120, 164, 203, 0.2);
+      --shadow: 0 18px 34px rgba(28, 55, 77, 0.08);
+      --radius: 22px;
+    }
 
-            /* Tonalidades Amarillas (Cálidos) */
-            --yellow: #ffedb8;
-            --yellow-soft: #fff6dc;
-            --yellow-deep: #f0c563;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fffaf0 0%, #edf8fd 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
 
-            /* Tonalidades Celeste (Calma y Frescura) */
-            --celeste: #bfe3ec;
-            --celeste-soft: #e6f6fa;
-            --celeste-deep: #8fcbda;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(249, 232, 162, 0.92);
+      border-bottom: 1px solid rgba(120, 164, 203, 0.25);
+      box-shadow: 0 6px 18px rgba(28, 55, 77, 0.05);
+    }
 
-            /* Tonalidades Naranja y Urgencia (Acentos y Botones) */
-            --orange: #f7b685;
-            --orange-soft: #fde3cd;
-            --orange-deep: #e8935c;
-            --urgent: #e8935c;
-            --urgent-deep: #d97a44;
+    .header-inner {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-            /* Fuetes */
-            --font-family-title: 'Playfair Display', serif; /* Opcional: una fuente con serifa para el título grande */
-            --font-family-body: 'Inter', sans-serif; /* Opcional: una fuente sans-serif para el cuerpo */
-        }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      font-size: 1.08rem;
+    }
 
-        /* Estilos Globales */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-family-body);
-            background-color: var(--cream);
-            color: var(--text);
-            line-height: 1.6;
-        }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      color: var(--white);
+      font-weight: 700;
+    }
 
-        h1, h2, h3, h4 {
-            margin-top: 0;
-        }
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        p {
-            color: var(--text-soft);
-            margin-bottom: 1.5rem;
-        }
+    .site-nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: rgba(255,255,255,0.3);
+      border: 1px solid rgba(120, 164, 203, 0.18);
+      transition: 0.2s ease;
+    }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    .site-nav a:hover,
+    .site-nav a.active {
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      color: var(--white);
+      box-shadow: 0 10px 22px rgba(120, 164, 203, 0.2);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(120, 164, 203, 0.2);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+    }
 
-        /* Sección 'Conócenos' */
-        .conocenos-section {
-            background-color: var(--celeste-soft);
-            padding: 100px 0;
-            text-align: center;
-        }
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 5px auto;
+      background: var(--ink);
+      border-radius: 10px;
+    }
 
-        .conocenos-title {
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--orange-deep);
-            font-size: 0.8rem;
-            margin-bottom: 2rem;
-            display: block;
-        }
+    .page-shell {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 72px;
+    }
 
-        .main-heading {
-            font-family: var(--font-family-title);
-            font-size: 4rem;
-            line-height: 1.2;
-            margin-bottom: 3rem;
-            color: var(--text);
-        }
+    .hero {
+      background: linear-gradient(135deg, rgba(180, 225, 235, 0.72), rgba(149, 189, 215, 0.5));
+      border: 1px solid rgba(120, 164, 203, 0.2);
+      border-radius: var(--radius);
+      padding: 42px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
 
-        .main-heading span {
-            color: var(--orange-deep);
-            font-style: italic;
-        }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(120, 164, 203, 0.26);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-        .main-description {
-            max-width: 700px;
-            margin: 0 auto 50px auto;
-            color: var(--text);
-            font-size: 1.1rem;
-        }
+    .hero h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(2.2rem, 4vw, 3.3rem);
+      letter-spacing: -0.04em;
+    }
 
-        /* Tarjetas (Misión, Visión, Compromiso) */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 0 50px;
-        }
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
 
-        .card {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--line);
-            text-align: left;
-        }
+    .info-grid,
+    .team-grid {
+      display: grid;
+      gap: 18px;
+    }
 
-        .card-icon {
-            font-size: 2rem;
-            color: var(--orange-deep);
-            margin-bottom: 1.5rem;
-        }
+    .info-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 8px;
+    }
 
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
+    .team-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
 
-        .card-text {
-            color: var(--text-soft);
-            font-size: 0.95rem;
-        }
+    .card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(120, 164, 203, 0.2);
+      border-radius: 18px;
+      padding: 22px 18px;
+      box-shadow: 0 12px 24px rgba(28, 55, 77, 0.04);
+    }
 
-        /* Sección 'Equipo' */
-        .team-section {
-            background-color: var(--celeste-deep);
-            padding: 100px 0;
-            margin: 40px 0;
-            border-radius: 12px;
-        }
+    .card .icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
 
-        .team-title {
-            font-size: 2.5rem;
-            color: var(--text);
-            text-align: center;
-            margin-bottom: 1rem;
-        }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
 
-        .team-description {
-            color: var(--text-soft);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-        }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 0 50px;
-        }
+    .team-member {
+      padding: 20px 16px;
+      text-align: center;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(120, 164, 203, 0.2);
+      border-radius: 18px;
+      box-shadow: 0 12px 20px rgba(28, 55, 77, 0.04);
+    }
 
-        .team-member {
-            background-color: transparent;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
+    .team-member .avatar {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      color: var(--white);
+      font-size: 1.5rem;
+    }
 
-        .member-icon {
-            font-size: 3rem;
-            color: var(--orange-deep);
-            margin-bottom: 1rem;
-        }
+    .team-member strong {
+      display: block;
+      margin-bottom: 4px;
+    }
 
-        .member-name {
-            color: var(--text);
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-        }
+    .team-member span {
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
 
-        .member-role {
-            color: var(--text-soft);
-            font-size: 0.8rem;
-            text-align: center;
-        }
+    .cta {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--p4), var(--p3));
+      color: var(--white);
+      border-radius: 24px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 16px 30px rgba(120, 164, 203, 0.2);
+    }
 
-        /* Sección 'Contacto' */
-        .contact-section {
-            background-color: var(--yellow-soft);
-            padding: 80px 0;
-            margin: 40px 0;
-            border-radius: 12px;
-        }
+    .cta h3 {
+      margin: 8px 0 0;
+      font-size: clamp(1.5rem, 2vw, 2.1rem);
+      letter-spacing: -0.03em;
+    }
 
-        .contact-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 50px;
-        }
+    .cta .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      color: var(--ink);
+      font-weight: 800;
+    }
 
-        .contact-prompt {
-            font-size: 1.2rem;
-            color: var(--text);
-            margin: 0;
-        }
-
-        .contact-button {
-            display: inline-block;
-            background-color: var(--orange-deep);
-            color: var(--white);
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-button:hover {
-            background-color: var(--urgent-deep);
-        }
-
-        /* Media Queries para Responsividad (Opcional, pero recomendado) */
-        @media (max-width: 900px) {
-            .cards-grid, .team-grid {
-                grid-template-columns: 1fr;
-                padding: 0 20px;
-            }
-
-            .main-heading {
-                font-size: 2.5rem;
-            }
-
-            .contact-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .contact-prompt {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    @media (max-width: 860px) {
+      .header-inner { position: relative; }
+      .nav-toggle { display: block; }
+      .site-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        padding: 12px;
+        background: rgba(255,255,255,0.96);
+        border: 1px solid rgba(120, 164, 203, 0.2);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+      .site-nav.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .info-grid,
+      .team-grid,
+      .cta {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+      .cta {
+        justify-items: start;
+      }
+    }
+  </style>
 </head>
-<body>
-<nav style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; padding:14px; background:#fff; border-bottom:1px solid #eee2c9;">
-    <a href="menuPrincipal.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">home</span> Inicio</a>
-    <a href="contactos.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">mail</span> Contacto</a>
-    <a href="herramientas.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">build</span> Herramientas</a>
-    <a href="sobreNosotros.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">group</span> Sobre nosotros</a>
-    <a href="soporteAyuda.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">support_agent</span> Soporte y ayuda</a>
-    <a href="terminosCondiciones.html" style="padding:8px 14px; background:#e8935c; color:#fff; border-radius:8px; text-decoration:none; font-weight:700;"><span class="material-icons" style="font-size:16px; vertical-align:middle;">description</span> Términos y condiciones</a>
-</nav>
+<body data-page="sobre">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">P</span>
+        PREVESUY
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="sobreNosotros.html" class="active">Sobre nosotros</a>
+        <a href="herramientas.html">Herramientas</a>
+        <a href="contactos.html">Contacto</a>
+        <a href="soporteAyuda.html">Soporte</a>
+        <a href="terminosCondiciones.html">Términos</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="conocenos-section">
-        <div class="container">
-            <span class="conocenos-title">CONÓCENOS</span>
-            <h1 class="main-heading">Creamos un espacio seguro para <span>escuchar</span>, <span>guiar</span> y <span>acompañar</span>.</h1>
-            <p class="main-description">PreveSUY nace con el propósito de centralizar herramientas, brindar apoyo y tender puentes en momentos donde más se necesita. Creemos en la ayuda accesible y comunitaria.</p>
-        </div>
+  <main class="page-shell">
+    <section class="hero">
+      <span class="eyebrow">Conócenos</span>
+      <h1>Creamos un espacio seguro para escuchar, guiar y acompañar.</h1>
+      <p>PREVESUY surge para reunir herramientas y acompañamiento en momentos donde la información y la contención importan más que nunca.</p>
     </section>
 
-    <section>
-        <div class="container">
-            <div class="cards-grid">
-                <div class="card">
-                    <i class="card-icon fa-solid fa-eye"></i> <h3 class="card-title">Nuestra Misión</h3>
-                    <p class="card-text">Facilitar el acceso a recursos de salud mental y redes de apoyo a todas las personas en Uruguay, disminuyendo las barreras de información.</p>
-                </div>
-                <div class="card">
-                    <i class="card-icon fa-solid fa-pound-sign"></i> <h3 class="card-title">Nuestra Visión</h3>
-                    <p class="card-text">Ser la plataforma de referencia digital en prevención y contención, construyendo una sociedad más empática, informada y conectada.</p>
-                </div>
-                <div class="card">
-                    <i class="card-icon fa-solid fa-heart"></i> <h3 class="card-title">Compromiso</h3>
-                    <p class="card-text">Trabajar con absoluta responsabilidad, respeto y empatía, asegurando que cada dato y línea de ayuda guarde un estándar seguro y confiable.</p>
-                </div>
-            </div>
-        </div>
+    <section class="info-grid">
+      <article class="card">
+        <div class="icon">-</div>
+        <h3>Nuestra misión</h3>
+        <p>Facilitar acceso a recursos de salud mental, apoyo emocional y herramientas útiles para cuidarnos y cuidarnos entre todos.</p>
+      </article>
+      <article class="card">
+        <div class="icon">-</div>
+        <h3>Nuestra visión</h3>
+        <p>Construir una comunidad más empática, informada y conectada, con apoyo accesible para todas las personas.</p>
+      </article>
+      <article class="card">
+        <div class="icon">-</div>
+        <h3>Compromiso</h3>
+        <p>Trabajar con respeto, responsabilidad y sensibilidad, procurando acompañar sin juzgar ni imponer.</p>
+      </article>
     </section>
 
-    <section class="team-section">
-        <div class="container">
-            <h2 class="team-title">Las personas detrás de PreveSUY</h2>
-            <p class="team-description">Un equipo enfocado en generar un impacto positivo en la comunidad.</p>
-            <div class="team-grid">
-                <div class="team-member">
-                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
-                    <span class="member-role">Rol / Especialidad</span>
-                </div>
-                <div class="team-member">
-                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
-                    <span class="member-role">Rol / Especialidad</span>
-                </div>
-                <div class="team-member">
-                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
-                    <span class="member-role">Rol / Especialidad</span>
-                </div>
-                <div class="team-member">
-                    <i class="member-icon fa-solid fa-user-tie"></i> <span class="member-name">Nombre Apellido</span>
-                    <span class="member-role">Rol / Especialidad</span>
-                </div>
-            </div>
-        </div>
+    <section class="team-grid" style="margin-top: 26px;">
+      <article class="team-member">
+        <div class="avatar">-</div>
+        <strong>Equipo</strong>
+        <span>Coordinación general</span>
+      </article>
+      <article class="team-member">
+        <div class="avatar">-</div>
+        <strong>Apoyo</strong>
+        <span>Salud mental</span>
+      </article>
+      <article class="team-member">
+        <div class="avatar">-</div>
+        <strong>Contención</strong>
+        <span>Trabajo social</span>
+      </article>
+      <article class="team-member">
+        <div class="avatar">-</div>
+        <strong>Comunicación</strong>
+        <span>Difusión y acceso</span>
+      </article>
     </section>
 
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-content">
-                <p class="contact-prompt">¿Querés sumarte al proyecto o hacernos una consulta?</p>
-                <a href="#" class="contact-button">Contáctanos</a>
-            </div>
-        </div>
+    <section class="cta">
+      <div>
+        <span class="eyebrow" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.2);">Sumate</span>
+        <h3>¿Querés sumar ideas o consultar algo?</h3>
+      </div>
+      <a href="contactos.html" class="btn">Contáctanos</a>
     </section>
+  </main>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="../assets/js/site.js"></script>
 </body>
 </html>
